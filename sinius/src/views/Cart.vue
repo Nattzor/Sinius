@@ -1,14 +1,12 @@
 <template>
   <div>
-    <h1>Sinus</h1>
-    <router-link to="/Products">Products</router-link>
+    <router-link to="/Checkout"> Checkout </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  
-}
+};
 </script>
 
 <style>
