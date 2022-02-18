@@ -89,5 +89,8 @@ export default {};
   border-radius: 100px;
   height: 50px;
   width: 424px;
+  background: rgba(229, 224, 224, 1);
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>
