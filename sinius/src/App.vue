@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    v-bind:style="{ 'background-image': 'url(' + backgroundImage + ')' }"
+  >
     <Header />
-    <Category />
-    <router-view/>
+    <router-view />
     <Footer />
   </div>
 </template>
@@ -10,9 +12,13 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Category from './components/Category.vue';
 export default {
-  components: { Header, Footer, Category },
+  components: { Header, Footer },
+  data() {
+    return {
+      backgroundImage: require("@/assets/WhiteAndGrayVectorBackground.jpg"),
+    };
+  },
 };
 </script>
 
@@ -20,5 +26,10 @@ export default {
 * {
   margin: 0;
   text-decoration: none;
+}
+#app {
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center center;
 }
 </style>
