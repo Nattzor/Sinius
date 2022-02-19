@@ -1,18 +1,15 @@
 <template>
-<div>
-<SingleProductCard />
-  <h1> THIS ONLY PRODUCT! </h1>
+  <div>
+    <SingleProductCard />
   </div>
 </template>
 
 <script>
-import SingleProductCard from "@/components/SingleProductCard.vue"
+import SingleProductCard from "@/components/SingleProductCard.vue";
 export default {
-components: {SingleProductCard}
-
-}
+  components: { SingleProductCard },
+};
 </script>
 
 <style>
-
 </style>
