@@ -2,11 +2,11 @@
    <div class="footer">
   <p> ADDRESS
 PO Box 149, <br> Korumburra VIC. 3950 Australia </p>
-<p><b> <fa icon="fa-solid fa-envelope" /> support@sinus.se</b></p>
-<p> <fa icon="fa-solid fa-calendar" />80 daya open purchase </p>
-<p> <fa icon="fa-solid fa-rotate-left" />Free return* </p>
-<p> <fa icon="fa-solid fa-truck" />Free delivery* </p>
-<p> Payment methods <fa icon="fa-brands fa-cc-mastercard" /><fa icon="fa-brands fa-cc-visa" /> <fa icon="fa-brands fa-cc-amex" /></p>
+<p><b> <fa class="icon" icon="fa-solid fa-envelope" /> support@sinus.se</b></p>
+<p> <fa class="icon" icon="fa-solid fa-calendar" />80 days open purshase </p>
+<p> <fa class="icon" icon="fa-solid fa-rotate-left" />Free return* </p>
+<p> <fa class="icon" icon="fa-solid fa-truck" />Free Shipping* </p>
+<p> Payment methods <fa class="icon" icon="fa-brands fa-cc-mastercard" /><fa class="icon" icon="fa-brands fa-cc-visa" /> <fa class="icon" icon="fa-brands fa-cc-amex" /></p>
    </div>
 </template>
 
@@ -25,10 +25,16 @@ export default {
   align-items: center;
 }
 
+.icon {
+   margin-right: 3px;
+}
+
 p {
   font-family: "Work Sans", sans-serif;
    font-size: 1rem;
    margin: 1rem;
 }
+
+
 
 </style>

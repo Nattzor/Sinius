@@ -1,5 +1,5 @@
 <template>
-  <p> I wanna signUp FOR THIS AWESOME SHOP! </p>
+  <p> Singup </p>
 </template>
 
 <script>

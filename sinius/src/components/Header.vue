@@ -56,7 +56,7 @@ export default {};
 .lowerHeader {
   width: 100%;
   height: 75px;
-  background: #cccccc;
+  background: linear-gradient(to bottom, rgba(204, 204, 204, 1), rgba(204, 204, 204, 0));
   display: flex;
   align-items: center;
   justify-content: center;
