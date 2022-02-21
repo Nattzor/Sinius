@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Category />
+   
     <router-view/>
     <Footer />
   </div>
@@ -10,9 +10,8 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Category from './components/Category.vue';
 export default {
-  components: { Header, Footer, Category },
+  components: { Header, Footer,  },
 };
 </script>
 
