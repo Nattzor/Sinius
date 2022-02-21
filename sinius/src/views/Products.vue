@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <h1>All products should be shown</h1> -->
-    <Category class="Category"/>
+    <Category class="Category" />
     <div class="productPlacement">
       <article class="productGrid">
         <ProductCard v-for="(product, index) in products" :key="index" />
