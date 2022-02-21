@@ -1,6 +1,12 @@
 <template>
-   <div class="Footer">
-  <p> Hello iam ze Footer </p>
+   <div class="footer">
+  <p> ADDRESS
+PO Box 149, <br> Korumburra VIC. 3950 Australia </p>
+<p><b> <fa icon="fa-solid fa-envelope" /> support@sinus.se</b></p>
+<p> <fa icon="fa-solid fa-calendar" />80 dagars öppet köp </p>
+<p> <fa icon="fa-solid fa-rotate-left" />Gratis retur* </p>
+<p> <fa icon="fa-solid fa-truck" />Gratis Leverans* </p>
+<p> Betal metoder <fa icon="fa-brands fa-cc-mastercard" /><fa icon="fa-brands fa-cc-visa" /> <fa icon="fa-brands fa-cc-amex" /></p>
    </div>
 </template>
 
@@ -11,5 +17,18 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
+.footer {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   background-color: rgba(132, 176, 193, 1);
+  align-items: center;
+}
+
+p {
+  font-family: "Work Sans", sans-serif;
+   font-size: 1rem;
+   margin: 1rem;
+}
 
 </style>
