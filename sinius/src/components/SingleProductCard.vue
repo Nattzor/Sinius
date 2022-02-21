@@ -19,7 +19,7 @@
       </div>
       <p>
         <select id="size" required>
-          <option disabled selected value>-- Välj Storlek --</option>
+          <option disabled selected value>-- Choose a size --</option>
           <option value="" disabled selected hidden></option>
           <option value="S">S</option>
           <option value="M">M</option>

@@ -3,10 +3,10 @@
   <p> ADDRESS
 PO Box 149, <br> Korumburra VIC. 3950 Australia </p>
 <p><b> <fa icon="fa-solid fa-envelope" /> support@sinus.se</b></p>
-<p> <fa icon="fa-solid fa-calendar" />80 dagars öppet köp </p>
-<p> <fa icon="fa-solid fa-rotate-left" />Gratis retur* </p>
-<p> <fa icon="fa-solid fa-truck" />Gratis Leverans* </p>
-<p> Betal metoder <fa icon="fa-brands fa-cc-mastercard" /><fa icon="fa-brands fa-cc-visa" /> <fa icon="fa-brands fa-cc-amex" /></p>
+<p> <fa icon="fa-solid fa-calendar" />80 daya open purchase </p>
+<p> <fa icon="fa-solid fa-rotate-left" />Free return* </p>
+<p> <fa icon="fa-solid fa-truck" />Free delivery* </p>
+<p> Payment methods <fa icon="fa-brands fa-cc-mastercard" /><fa icon="fa-brands fa-cc-visa" /> <fa icon="fa-brands fa-cc-amex" /></p>
    </div>
 </template>
 
