@@ -30,8 +30,8 @@
       <div class="categoryOptions" v-show="activeAccessoriesDropdown">
         <h3>- Skateboards</h3>
         <h3>- Wheel</h3>
-        <h3>- Grepptejp</h3>
-        <h3>- Tygkasser</h3>
+        <h3>- Griptape</h3>
+        <h3>- Bag</h3>
       </div>
     </div>
   </div>

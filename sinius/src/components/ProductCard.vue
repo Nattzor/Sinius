@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://css.gg/shopping-cart.css");
 .product-card {
   padding: 20px;
