@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
 .footer {
    display: grid;
