@@ -19,9 +19,9 @@ export default {
     data() {
     return {
       backgroundImage: require("@/assets/hero.png"),
-  person: [{id: 0, name: 'Nathalie Larsson', quote: 'Att åka skatebord är det bästa jag vet.', article: 'Jag älskar att åka skateboard. När jag inte är i skolan så är jag med mina vänner vid skate parken.', img: require('@/assets/hero.png')},
-   {id: 1, name: 'Hernik Larsson', quote: 'Jag har precis börjat men det är väldigt roligt.', article: 'Jag har inte åkt  så länge så jag är inte så bra jag än. Men jag fick en ny skateboard när jag fyllde år så nu kan jag åka mycke bättre.'},
-   {id: 2, name: 'Torsten Borsten', quote: 'Det är svårt ibland men det är ändå välldigt kul.', article: 'Jag gillar skateboard. Det är svårt att hålla balancen ibland, men det är roligt ändå. När jag inte är i skolan går jag till skateparken med mina kompisar.'},
+  person: [{id: 0, name: 'Nathalie Larsson', quote: 'Att åka skatebord är det bästa jag vet.', article: 'Jag älskar att åka skateboard. När jag inte är i skolan så är jag med mina vänner vid skate parken.', img: require('@/assets/skateboard1.jpeg')},
+   {id: 1, name: 'Hernik Larsson', quote: 'Jag har precis börjat men det är väldigt roligt.', article: 'Jag har inte åkt  så länge så jag är inte så bra jag än. Men jag fick en ny skateboard när jag fyllde år så nu kan jag åka mycke bättre.', img: require('@/assets/skateboard2.jpeg')},
+   {id: 2, name: 'Torsten Borsten', quote: 'Det är svårt ibland men det är ändå välldigt kul.', article: 'Jag gillar skateboard. Det är svårt att hålla balancen ibland, men det är roligt ändå. När jag inte är i skolan går jag till skateparken med mina kompisar.', img: require('@/assets/skateboard3.jpeg')},
         ],
 }
 }
@@ -36,16 +36,18 @@ export default {
 }
 .hero {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
-    background-size: 100%;
+    background-size: cover;
+    padding: 20rem;
    background-repeat: no-repeat;
 }
 
 .toShopBtn {
-  color: white;
   border-color: white;
   padding: 1rem;
+  margin: 5rem;
   border-radius: 100px;
   background-color: Transparent;
   align-self: center;
