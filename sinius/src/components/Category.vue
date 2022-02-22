@@ -4,7 +4,7 @@
     <h1>CATEGORY</h1>
     <div class="categoryPadding" @click="triangleIconDownClothes">
       <h2>
-        Kläder
+        Clothes
         <fa v-if="clothesDropdown" icon="fa-solid fa-caret-right" />
         <fa
           v-else-if="clothesDropdown === false"
@@ -20,7 +20,7 @@
     </div>
     <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
       <h2>
-        Tillbehör
+        Accessories
         <fa v-if="accessoriesDropdown" icon="fa-solid fa-caret-right" />
         <fa
           v-else-if="accessoriesDropdown === false"
