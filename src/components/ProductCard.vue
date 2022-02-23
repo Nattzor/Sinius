@@ -2,7 +2,7 @@
   <div class="product-card">
     <img
       class="product-img"
-      src="/images/singleItem.imgFile" 
+      :src="'http://localhost:5000//images/' + singleItem.imgFile" 
       alt="The image of the product"
     />
 
@@ -50,7 +50,6 @@ props: {
 .product-img {
   margin-top: 20px;
   width: 203px;
-  height: 221px;
 }
 .product-card-name {
   margin-top: 25px;
