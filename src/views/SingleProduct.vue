@@ -21,7 +21,7 @@
     <div class="productPlacement">
       <h1>Related Products</h1>
       <article class="productGrid">
-        <ProductCard v-for="(product, index) in products" :key="index" />
+        <ProductCard v-for="item in items" :key="item.id" :singleItem="item" />
       </article>
     </div>
   </div>
@@ -33,9 +33,15 @@ import ProductCard from "@/components/ProductCard.vue";
 export default {
   components: { SingleProductCard, ProductCard },
   data() {
-    return {
-      products: 6,
-    };
+    return {};
+  },
+  mounted() {
+    this.$store.dispatch("fetchItems");
+  },
+  computed: {
+    items() {
+      return this.$store.state.items;
+    },
   },
 };
 </script>
@@ -50,7 +56,7 @@ export default {
 }
 .productHeaders h2 {
   cursor: pointer;
-  border-bottom: 5px solid #2F88FF;
+  border-bottom: 5px solid #2f88ff;
 }
 .productHeaderDescription {
   display: flex;
