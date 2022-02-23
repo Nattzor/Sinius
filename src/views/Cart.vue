@@ -4,6 +4,12 @@
   <h1>Cart</h1>
   </div>
   <div class="coupon-container">
+<div class="shipping text">
+  <h1>Shipping</h1>
+  <hr class="hr-shipping">
+  <h1>Free Shipping if purchase subseeds x amount of kr</h1>
+  </div>
+    <div class="coupoun-wrap">
     <div class="coupon-one">
       <div class="coupon-info">
         <div class="info-p">
@@ -24,7 +30,7 @@
     <div class="coupon-one">
       <div class="coupon-info">
         <div class="info-p">
-          <p>10%<p>
+          <p>20%<p>
           <p>discount code</p>
           <p>discount code</p>
           </div>
@@ -40,7 +46,7 @@
         <div class="coupon-one">
       <div class="coupon-info">
         <div class="info-p">
-          <p>10%<p>
+          <p>30%<p>
           <p>discount code</p>
           <p>discount code</p>
           </div>
@@ -53,8 +59,13 @@
       <p>Checkout coupon</p>
     </div>
     </div>
+    </div>
+    <div class="coupon-input-container">
+    <input class="coupon-input" type="text" placeholder="Use your code here">
+    <button class="coupon-input-btn">Apply coupon</button>
+    </div>
   </div>
-
+  
 
 
 
@@ -102,7 +113,7 @@ background: rgba(204, 204, 204, 0.5);
 align-self: center;
 margin: 2rem;
 display: flex;
-flex-direction: column;
+flex-direction: row;
 }
 .coupon-one{
 width: 554px;
@@ -119,6 +130,7 @@ align-items: center;
  display: flex;
 flex-direction: column;
 justify-content: space-between;
+text-align: center;
 }
 .info-p p:first-child{
 color: red;
@@ -129,6 +141,7 @@ width: 80px;
 height: 12px;
 border-radius: 2px;
 color: #E5E5E5;
+text-align: center;
 
 }
 .coupon-info p{
@@ -165,5 +178,41 @@ line-height: 18px;
 color: #FFFFFF;
 align-self: center;
 }
+.coupon-input{
+width: 272px;
+height: 54px;
+text-align: center;
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 40px;
+margin-right: 3rem;
+margin-left: 2rem;
+}
+.coupon-input:active,
+.coupon-input:focus,
+.coupon-input:hover {
+	border-color: #1e16af;
+	outline: none;
+}
+.coupon-input-container{
+display: flex;
+flex-direction: row;
 
+}
+.coupon-input-btn{
+width: 138px;
+height: 54px;
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 40px;
+}
+.hr-shipping{
+width: 235px;
+height: 0px;
+
+
+border: 2px solid #757575;
+}
 </style>
