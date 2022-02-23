@@ -5,14 +5,16 @@
       <div class="singleCardInfo">
         <img
           class="displayedProduct"
-          src=""
+          :src="'http://localhost:5000/images/' + item.imgFile"
           alt="Blue Sweater"
         />
-        <h1 class="productName">Blue Sinus Hoodie</h1>
+        <h1 class="productName">
+          {{ item.title }} Sinus {{ item.category }}
+        </h1>
         <div class="tagPriceCart">
           <div class="tagAndPrice">
             <fa class="priceTag" icon="fa-solid fa-tag" rotation="90" />
-            <h2 class="productPrice">*Add price*</h2>
+            <h2 class="productPrice">{{ item.price }}kr</h2>
           </div>
           <button class="add-to-cart">
             <i class="gg-shopping-cart"></i> ADD TO CART
@@ -33,11 +35,7 @@
             <option value="XL">XL</option>
           </select>
         </p>
-        <h3 class="productDescription">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br />Nihil,
-          impedit ipsa ut quasi itaque doloribus ipsam illo molestias, <br />
-          in cum tempore consequatur totam, id vero?
-        </h3>
+        <h3 class="productDescription">{{item.longDesc}}</h3>
       </div>
     </div>
   </div>
@@ -48,9 +46,14 @@ import Category from "@/components/Category.vue";
 export default {
   components: { Category },
   data() {
-    return {
-      products: 6,
-    };
+    return {};
+  },
+  computed: {
+    item() {
+      return this.$store.state.items.find(
+        (item) => item.id == this.$route.params.id
+      );
+    },
   },
 };
 </script>
@@ -60,13 +63,9 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quando&display=swap");
-.Category {
-  position: absolute;
-}
-.positioning {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.SingleProductCard {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 .singleCardInfo {
   width: 46vw;

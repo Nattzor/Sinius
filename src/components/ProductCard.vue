@@ -1,13 +1,15 @@
 <template>
   <div class="product-card">
-    <img
-      class="product-img"
-      :src="'http://localhost:5000//images/' + singleItem.imgFile" 
-      alt="The image of the product"
-    />
+    <router-link :to="'/Products/SingleProduct' + '/' + singleItem.id">
+      <img
+        class="product-img"
+        :src="'http://localhost:5000//images/' + singleItem.imgFile"
+        alt="The image of the product"
+      />
+    </router-link>
 
-    <h1 class="product-card-name">{{ singleItem.category }}</h1>
-    <h1 class="product-card-price">{{ singleItem.price }}</h1>
+    <h1 class="product-card-name">{{singleItem.title}} Sinus {{ singleItem.category }}</h1>
+    <h1 class="product-card-price">{{ singleItem.price }}kr</h1>
     <button class="add-to-cart">
       <i class="gg-shopping-cart" @click="addToCart(item)"></i> ADD TO CART
     </button>
@@ -16,16 +18,13 @@
 
 <script>
 export default {
-props: {
- singleItem: Object,
- },
-  data() {
-    return {
-      price: [],
-
-    };
+  props: {
+    singleItem: Object,
   },
-  
+  data() {
+    return {};
+  },
+
   methods: {
     addToCart(item) {
       this.$store.commit("addToCart", item);

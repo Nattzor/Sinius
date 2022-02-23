@@ -23,7 +23,7 @@ const routes = [
     component: Products
   },
   {
-    path: '/Products/SingleProduct',
+    path: '/Products/SingleProduct/:id',
     name: 'SingleProduct',
     component: SingleProduct
   },
