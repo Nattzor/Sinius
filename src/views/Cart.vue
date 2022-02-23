@@ -4,10 +4,10 @@
   <h1>Cart</h1>
   </div>
   <div class="coupon-container">
-<div class="shipping text">
+<div class="shipping-wrap">
   <h1>Shipping</h1>
   <hr class="hr-shipping">
-  <h1>Free Shipping if purchase subseeds x amount of kr</h1>
+  <h2>Free Shipping if purchase subseeds x </h2>
   </div>
     <div class="coupoun-wrap">
     <div class="coupon-one">
@@ -59,11 +59,31 @@
       <p>Checkout coupon</p>
     </div>
     </div>
-    </div>
     <div class="coupon-input-container">
     <input class="coupon-input" type="text" placeholder="Use your code here">
     <button class="coupon-input-btn">Apply coupon</button>
     </div>
+    </div>
+  </div>
+  <div class="items-wrapper">
+    <div class="cart-items">
+      <h1>Your Items (15)</h1>
+      <hr>
+      <div class="cart-items-desc">
+        <h1>Items</h1>
+        <h1>Description</h1>
+        <h1>Price</h1>
+        <h1>Amount</h1>
+        <h1>Total Amount</h1>
+      </div>
+      <hr>
+    </div>
+
+
+
+
+
+<router-link class="checkout-cart" to="/Checkout"> Checkout </router-link>
   </div>
   
 
@@ -76,7 +96,7 @@
 
 
 
-<router-link to="/Checkout"> Checkout </router-link>
+
 </div>
 </template>
 
@@ -113,7 +133,7 @@ background: rgba(204, 204, 204, 0.5);
 align-self: center;
 margin: 2rem;
 display: flex;
-flex-direction: row;
+flex-direction: row-reverse;
 }
 .coupon-one{
 width: 554px;
@@ -211,8 +231,43 @@ border-radius: 40px;
 .hr-shipping{
 width: 235px;
 height: 0px;
-
-
 border: 2px solid #757575;
+}
+.shipping-wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.checkout-cart{
+width: 445px;
+height: 94px;
+background: #F79E1B;
+border-radius: 10px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 25px;;
+text-align: center;
+color: #FFFFFF;
+}
+.items-wrapper{
+width: 1168px;
+height: 1756px;
+align-self: center;
+
+}
+.cart-items hr{
+  width: 1120px;
+height: 0px;
+left: 24px;
+top: 54px;
+border: 1px solid #7C7D7D;
+}
+.cart-items-desc{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>
