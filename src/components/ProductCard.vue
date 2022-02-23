@@ -2,24 +2,35 @@
   <div class="product-card">
     <img
       class="product-img"
-      :src="require(`@/assets/products-img/sweater-ash.png`)"
+      src="/images/singleItem.imgFile" 
       alt="The image of the product"
     />
 
-    <h1 class="product-card-name">Sinius Hoodie Series</h1>
-    <h1 class="product-card-price">399 Kr</h1>
+    <h1 class="product-card-name">{{ singleItem.category }}</h1>
+    <h1 class="product-card-price">{{ singleItem.price }}</h1>
     <button class="add-to-cart">
-      <i class="gg-shopping-cart"></i> ADD TO CART
+      <i class="gg-shopping-cart" @click="addToCart(item)"></i> ADD TO CART
     </button>
   </div>
 </template>
 
 <script>
 export default {
+props: {
+ singleItem: Object,
+ },
   data() {
-    return {};
+    return {
+      price: [],
+
+    };
   },
-  computed: {},
+  
+  methods: {
+    addToCart(item) {
+      this.$store.commit("addToCart", item);
+    },
+  },
 };
 </script>
 

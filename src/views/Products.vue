@@ -3,7 +3,7 @@
     <Category class="Category" />
     <div class="productPlacement">
       <article class="productGrid">
-        <ProductCard v-for="(product, index) in products" :key="index" />
+        <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
       </article>
     </div>
   </div>
@@ -17,10 +17,18 @@ export default {
   components: { Category, ProductCard },
   data() {
     return {
-      products: 27,
-    };
-  },
-};
+    }
+    },
+        mounted() {
+     this.$store.dispatch('fetchItems')
+     },
+   computed: {
+      items() {
+        return this.$store.state.items;
+      },
+
+ }
+ }
 </script>
 
 <style scoped>
