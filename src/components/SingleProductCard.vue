@@ -5,7 +5,7 @@
       <div class="singleCardInfo">
         <img
           class="displayedProduct"
-          src="@/assets/products-img/sweater-blue.png"
+          src=""
           alt="Blue Sweater"
         />
         <h1 class="productName">Blue Sinus Hoodie</h1>
