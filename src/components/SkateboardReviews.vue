@@ -1,6 +1,6 @@
 <template>
   <article class="container" > 
- <div class="topPart" v-for="person in person" :key="person.id"> 
+ <div class="topPart"> 
      <img :src="person.img">
      <h1> {{person.name}} </h1>
      <h4> {{person.quote}} </h4>
