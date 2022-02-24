@@ -10,7 +10,7 @@ export default new Vuex.Store({
     items: [],
     cart: [],
     price: [],
-    products: []
+    products: [],
   },
   mutations: {
     saveAuthData(state, authData) {
@@ -25,6 +25,9 @@ export default new Vuex.Store({
       state.cart.push(item)
     }
   },
+  getters: {
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category)
+   },
   actions: {
     async authenticate(context, credentials) {
       const response = await API.login(credentials.email, credentials.password);

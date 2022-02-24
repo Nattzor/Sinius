@@ -12,10 +12,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeClothesDropdown">
-        <h3>- Hoodie</h3>
-        <h3>- T-shirt</h3>
-        <h3>- Socks</h3>
-        <h3>- Caps</h3>
+        <button @click="$emit('changeCategory', 'hoodie')"> HoodiesGRILLKORV </button>
+        <button @click="$emit('changeCategory', 'tshirt')"> T-shirt </button>
+        <button @click="$emit('changeCategory', 'socks')"> Socks </button>
+        <button @click="$emit('changeCategory', 'cap')"> Caps </button>
       </div>
     </div>
     <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
@@ -28,10 +28,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeAccessoriesDropdown">
-        <h3>- Skateboards</h3>
-        <h3>- Wheel</h3>
-        <h3>- Griptape</h3>
-        <h3>- Bag</h3>
+  <button @click="$emit('changeCategory', 'skateboard')"> Skateboard </button>
+<button @click="$emit('changeCategory', 'wheel')"> Wheel </button>
+<button @click="$emit('changeCategory', 'griptape')"> Griptape </button>
+<button @click="$emit('changeCategory', 'totebag')"> Totebags </button>
       </div>
     </div>
   </div>
@@ -71,8 +71,16 @@ export default {
         this.activeAccessoriesDropdown = false;
       }
     },
+    changeCategory() {
+    this.$emit('changeCategory', this.showCategory);
+    }, 
   },
-};
+    computed: {
+      filteredItems() {
+        return this.$store.getters.getItemsByCategory(this.showCategory)
+      }, 
+    }
+  }
 </script>
 
 <style>
