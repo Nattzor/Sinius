@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Category class="Category" />
+    <Category class="Category" @changeCategory="changeCategory" />
     <div class="productPlacement">
       <article class="productGrid">
         <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
@@ -17,17 +17,25 @@ export default {
   components: { Category, ProductCard },
   data() {
     return {
+      category: 'all'
     }
     },
-        mounted() {
+    mounted() {
      this.$store.dispatch('fetchItems')
      },
+     methods: {
+       changeCategory(choosenCategory) {
+         this.category = choosenCategory
+        
+       }
+     },
    computed: {
-      items() {
-        return this.$store.state.items;
+    items() {
+      if (this.category == 'all') {
+    return this.$store.state.items;
+      } else {return this.$store.state.items.filter(items => items.category == this.category)}
       },
-
- }
+    }
  }
 </script>
 

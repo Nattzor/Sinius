@@ -30,6 +30,9 @@ export default new Vuex.Store({
       state.users.push(user);
     },
   },
+  getters: {
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category)
+   },
   actions: {
     // async authenticate(context, credentials) {
     //   const response = await API.login(credentials.email, credentials.password);
