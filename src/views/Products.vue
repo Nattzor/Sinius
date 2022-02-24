@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Category class="Category" @changeCategory='category' />
+    <Category class="Category" @changeCategory="changeCategory" />
     <div class="productPlacement">
       <article class="productGrid">
         <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
@@ -23,10 +23,12 @@ export default {
     mounted() {
      this.$store.dispatch('fetchItems')
      },
-     changeCategory(showCategory) {
-      this.category = showCategory
-      this.$emit('chooseCategory', this.showCategory);
-    }, 
+     methods: {
+       changeCategory(choosenCategory) {
+         this.category = choosenCategory
+        
+       }
+     },
    computed: {
     items() {
       if (this.category == 'all') {

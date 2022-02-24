@@ -12,10 +12,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeClothesDropdown">
-        <button @click="showCategory = 'hoodie', $emit('changeCategory', showCategory)"> Hoodies </button>
-        <button @click="showCategory = 'tshirt'"> T-shirt </button>
-        <button @click="showCategory = 'socks'"> Socks </button>
-        <button @click="showCategory = 'cap'"> Caps </button>
+        <button @click="$emit('changeCategory', 'hoodie')"> HoodiesGRILLKORV </button>
+        <button @click="$emit('changeCategory', 'tshirt')"> T-shirt </button>
+        <button @click="$emit('changeCategory', 'socks')"> Socks </button>
+        <button @click="$emit('changeCategory', 'cap')"> Caps </button>
       </div>
     </div>
     <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
@@ -28,10 +28,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeAccessoriesDropdown">
-  <button @click="showCategory = 'skateboard'"> Skateboard </button>
-<button @click="showCategory = 'wheel'"> Wheel </button>
-<button @click="showCategory = 'griptape'"> Griptape </button>
-<button @click="showCategory = 'totebag'"> Totebags </button>
+  <button @click="$emit('changeCategory', 'skateboard')"> Skateboard </button>
+<button @click="$emit('changeCategory', 'wheel')"> Wheel </button>
+<button @click="$emit('changeCategory', 'griptape')"> Griptape </button>
+<button @click="$emit('changeCategory', 'totebag')"> Totebags </button>
       </div>
     </div>
   </div>
@@ -42,7 +42,6 @@
 export default {
   data() {
     return {
-      showCategory: 'cap',
       clothesDropdown: true,
       accessoriesDropdown: true,
       activeClothesDropdown: false,
@@ -71,12 +70,15 @@ export default {
         this.accessoriesDropdown = true;
         this.activeAccessoriesDropdown = false;
       }
-    }
+    },
+    changeCategory() {
+    this.$emit('changeCategory', this.showCategory);
+    }, 
   },
     computed: {
       filteredItems() {
         return this.$store.getters.getItemsByCategory(this.showCategory)
-      }
+      }, 
     }
   }
 </script>
