@@ -10,7 +10,7 @@ export default new Vuex.Store({
     items: [],
     cart: [],
     price: [],
-    products: []
+    products: [],
   },
   mutations: {
     saveAuthData(state, authData) {
@@ -26,9 +26,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    onlyHoodies(state) {
-     const hoodies = state.items.filter((item) => { return item.category == "hoodie"});
-     return hoodies },
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category)
    },
   actions: {
     async authenticate(context, credentials) {

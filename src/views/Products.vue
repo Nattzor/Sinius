@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Category class="Category"/>
+    <Category class="Category" @changeCategory='category' />
     <div class="productPlacement">
       <article class="productGrid">
         <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
@@ -17,37 +17,23 @@ export default {
   components: { Category, ProductCard },
   data() {
     return {
+      category: 'all'
     }
     },
     mounted() {
      this.$store.dispatch('fetchItems')
      },
+     changeCategory(showCategory) {
+      this.category = showCategory
+      this.$emit('chooseCategory', this.showCategory);
+    }, 
    computed: {
     items() {
+      if (this.category == 'all') {
     return this.$store.state.items;
+      } else {return this.$store.state.items.filter(items => items.category == this.category)}
       },
-    onlyHoodies() {
-    return this.$store.state.items.filter(items => items.category == "hoodie");
-  },
-    onlyTshirts() {
-    return this.$store.state.items.filter(items => items.category == "tshirt");
-  },
-    onlyCaps() {
-    return this.$store.state.items.filter(items => items.category == "cap");
-  },
-    onlySocks() {
-    return this.$store.state.items.filter(items => items.category == "socks");
-  },
-  onlySkateboard() {
-    return this.$store.state.items.filter(items => items.category == "skateboard");
-  },
-  onlyWheel() {
-    return this.$store.state.items.filter(items => items.category == "wheel");
-  },
-   onlyTote() {
-    return this.$store.state.items.filter(items => items.category == "totebag");
-  }
- }
+    }
  }
 </script>
 

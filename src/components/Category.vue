@@ -12,10 +12,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeClothesDropdown">
-        <button @click="hoodies">- Hoodie</button>
-        <button @click="onlyTshirts">- T-shirt</button>
-        <button @click="onlySocks">- Socks</button>
-        <button @click="onlyCaps">- Caps</button>
+        <button @click="showCategory = 'hoodie', $emit('changeCategory', showCategory)"> Hoodies </button>
+        <button @click="showCategory = 'tshirt'"> T-shirt </button>
+        <button @click="showCategory = 'socks'"> Socks </button>
+        <button @click="showCategory = 'cap'"> Caps </button>
       </div>
     </div>
     <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
@@ -28,10 +28,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeAccessoriesDropdown">
-  <button @click="onlySkateboardS"> Skateboard </button>
-<button @click="onlyWheel"> Wheel </button>
-<button @click="onlyGriptape"> Griptape </button>
-<button @click="onlyTote"> Totebags </button>
+  <button @click="showCategory = 'skateboard'"> Skateboard </button>
+<button @click="showCategory = 'wheel'"> Wheel </button>
+<button @click="showCategory = 'griptape'"> Griptape </button>
+<button @click="showCategory = 'totebag'"> Totebags </button>
       </div>
     </div>
   </div>
@@ -42,6 +42,7 @@
 export default {
   data() {
     return {
+      showCategory: 'cap',
       clothesDropdown: true,
       accessoriesDropdown: true,
       activeClothesDropdown: false,
@@ -72,7 +73,12 @@ export default {
       }
     }
   },
-};
+    computed: {
+      filteredItems() {
+        return this.$store.getters.getItemsByCategory(this.showCategory)
+      }
+    }
+  }
 </script>
 
 <style>
