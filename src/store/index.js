@@ -31,8 +31,11 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getItemsByCategory: state => category => state.items.filter(items => items.category == category)
-   },
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category),
+    currentUser(state) {
+      return state.currentUser;
+    }, 
+  },
   actions: {
     // async authenticate(context, credentials) {
     //   const response = await API.login(credentials.email, credentials.password);
@@ -54,9 +57,4 @@ export default new Vuex.Store({
     },
   },
   modules: {},
-  getters: {
-    currentUser(state) {
-      return state.currentUser;
-    },
-  },
 });
