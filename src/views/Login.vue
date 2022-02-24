@@ -17,7 +17,7 @@
     <h2>
     <router-link to="/Signup">Signup</router-link>
     </h2>
-    <Signup />
+   
   </div>
   </div>
 
@@ -31,7 +31,7 @@ export default {
 <style>
 .container{
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center; 
 }
 h1{

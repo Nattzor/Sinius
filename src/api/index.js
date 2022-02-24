@@ -13,3 +13,4 @@ export async function login(email, password) {
 export async function getItems() {
   return await axios.get("/items");
 }
+

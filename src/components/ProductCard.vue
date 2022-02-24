@@ -10,8 +10,8 @@
 
     <h1 class="product-card-name">{{singleItem.title}} Sinus {{ singleItem.category }}</h1>
     <h1 class="product-card-price">{{ singleItem.price }}kr</h1>
-    <button class="add-to-cart">
-      <i class="gg-shopping-cart" @click="addToCart(item)"></i> ADD TO CART
+    <button class="add-to-cart" @click="addToCart(singleItem)">
+      <i class="gg-shopping-cart"></i> ADD TO CART
     </button>
   </div>
 </template>
@@ -24,11 +24,13 @@ export default {
   data() {
     return {};
   },
-
+  computed: {
+  },
   methods: {
-    addToCart(item) {
-      this.$store.commit("addToCart", item);
+   addToCart(singleItem){
+      this.$store.dispatch('addToCart', singleItem)
     },
+  
   },
 };
 </script>

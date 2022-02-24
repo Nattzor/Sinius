@@ -20,20 +20,19 @@ export default {
       category: 'all'
     }
     },
-    mounted() {
-     this.$store.dispatch('fetchItems')
-     },
      methods: {
        changeCategory(choosenCategory) {
-         this.category = choosenCategory
-        
+         this.category = choosenCategory 
        }
      },
+     mounted(){
+    this.$store.dispatch('fetchItems')
+  },
    computed: {
     items() {
       if (this.category == 'all') {
-    return this.$store.state.items;
-      } else {return this.$store.state.items.filter(items => items.category == this.category)}
+    return this.$store.state.itemList;
+      } else {return this.$store.state.itemList.filter(itemList => itemList.category == this.category)}
       },
     }
  }
