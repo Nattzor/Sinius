@@ -12,10 +12,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeClothesDropdown">
-        <h3>- Hoodie</h3>
-        <h3>- T-shirt</h3>
-        <h3>- Socks</h3>
-        <h3>- Caps</h3>
+        <button @click="hoodies">- Hoodie</button>
+        <button @click="onlyTshirts">- T-shirt</button>
+        <button @click="onlySocks">- Socks</button>
+        <button @click="onlyCaps">- Caps</button>
       </div>
     </div>
     <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
@@ -28,10 +28,10 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeAccessoriesDropdown">
-        <h3>- Skateboards</h3>
-        <h3>- Wheel</h3>
-        <h3>- Griptape</h3>
-        <h3>- Bag</h3>
+  <button @click="onlySkateboardS"> Skateboard </button>
+<button @click="onlyWheel"> Wheel </button>
+<button @click="onlyGriptape"> Griptape </button>
+<button @click="onlyTote"> Totebags </button>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@ export default {
         this.accessoriesDropdown = true;
         this.activeAccessoriesDropdown = false;
       }
-    },
+    }
   },
 };
 </script>

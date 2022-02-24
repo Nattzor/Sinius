@@ -25,6 +25,11 @@ export default new Vuex.Store({
       state.cart.push(item)
     }
   },
+  getters: {
+    onlyHoodies(state) {
+     const hoodies = state.items.filter((item) => { return item.category == "hoodie"});
+     return hoodies },
+   },
   actions: {
     async authenticate(context, credentials) {
       const response = await API.login(credentials.email, credentials.password);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Category class="Category" />
+    <Category class="Category"/>
     <div class="productPlacement">
       <article class="productGrid">
         <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
@@ -19,14 +19,34 @@ export default {
     return {
     }
     },
-        mounted() {
+    mounted() {
      this.$store.dispatch('fetchItems')
      },
    computed: {
-      items() {
-        return this.$store.state.items;
+    items() {
+    return this.$store.state.items;
       },
-
+    onlyHoodies() {
+    return this.$store.state.items.filter(items => items.category == "hoodie");
+  },
+    onlyTshirts() {
+    return this.$store.state.items.filter(items => items.category == "tshirt");
+  },
+    onlyCaps() {
+    return this.$store.state.items.filter(items => items.category == "cap");
+  },
+    onlySocks() {
+    return this.$store.state.items.filter(items => items.category == "socks");
+  },
+  onlySkateboard() {
+    return this.$store.state.items.filter(items => items.category == "skateboard");
+  },
+  onlyWheel() {
+    return this.$store.state.items.filter(items => items.category == "wheel");
+  },
+   onlyTote() {
+    return this.$store.state.items.filter(items => items.category == "totebag");
+  }
  }
  }
 </script>
