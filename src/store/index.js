@@ -14,6 +14,7 @@ export default new Vuex.Store({
     currentUser: [],
     users: [],
     state: [],
+
   },
   mutations: {
     saveAuthData(state, authData) {
@@ -29,12 +30,15 @@ export default new Vuex.Store({
     userPush(state, user) {
       state.users.push(user);
     },
+    authUsers(state, user) {
+      state.users.push(user);
+    },
   },
   getters: {
     getItemsByCategory: state => category => state.items.filter(items => items.category == category),
     currentUser(state) {
       return state.currentUser;
-    }, 
+    },
   },
   actions: {
     // async authenticate(context, credentials) {
@@ -54,6 +58,20 @@ export default new Vuex.Store({
       
       console.log(response.data);
       context.commit("userPush", response.data);
+    },
+    async authUser(context, credentials) {
+      const response = await API.authUser(credentials.email, credentials.password);
+      API.saveUserToken(response.data.token);
+      
+      console.log(response.data);
+      context.commit("userPush", response.data);
+    },
+    async userAccount(context) {
+      const response = await API.userAccount();
+      API.userAuthToken(response.data.token);
+      
+      console.log(response.data);
+      context.commit("authUsers", response.data);
     },
   },
   modules: {},

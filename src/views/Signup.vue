@@ -75,6 +75,7 @@ export default {
     signUpUser() {
       if (this.validateDetails()) {
         this.$store.dispatch("registerUser", this.userDetails);
+        this.$router.push("/Login");
       }
     },
     validateDetails() {
