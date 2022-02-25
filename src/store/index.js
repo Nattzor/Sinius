@@ -51,7 +51,7 @@ export default new Vuex.Store({
    
   },
   getters: {
-    getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
+    //getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
     cart(state){
       return state.cart.map(cartItem => ({
         id: cartItem.id,
