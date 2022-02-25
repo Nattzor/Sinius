@@ -17,12 +17,15 @@ export default new Vuex.Store({
     cart: [],
     price: [],
     itemList: []
+    products: [],
+    currentUser: [],
+    users: [],
+    state: [],
   },
   mutations: {
     saveAuthData(state, authData) {
-      // state.token = authData.token
+      state.token = authData.token;
       state.email = authData.email;
-      state.price = authData.price;
     },
     saveItems(state, items) {
       for(let singleItem of items){
@@ -30,7 +33,6 @@ export default new Vuex.Store({
         Vue.set(state.items, singleItem.id, singleItem)
       }
     },
-  
     saveItemsInCart(state, singleItem){
       const inCart = state.cart.find(cartItem => cartItem.id == singleItem.id)
       if(inCart){
@@ -65,6 +67,27 @@ export default new Vuex.Store({
       API.saveToken(response.data.token);
       context.commit("saveAuthData", response.data);
     },
+    addToCart(state, item) {
+      state.cart.push(item);
+    },
+    userPush(state, user) {
+      state.users.push(user);
+    },
+  },
+  getters: {
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category),
+    currentUser(state) {
+      return state.currentUser;
+    }, 
+  },
+  actions: {
+    // async authenticate(context, credentials) {
+    //   const response = await API.login(credentials.email, credentials.password);
+    //   console.log(response);
+    //   API.saveToken(response.data.token);
+
+    //   context.commit("saveAuthData", response.data);
+    // },
     async fetchItems(context) {
       const response = await API.getItems();
       context.commit("saveItems", response.data);
@@ -76,9 +99,13 @@ export default new Vuex.Store({
 
       commit('updateCartItem', {id, amount})
     }
-    
+    async registerUser(context, credentials) {
+      const response = await API.registerUser(credentials.email, credentials.name, credentials.password, credentials.address);
+      API.saveToken(response.data.token);
+      
+      console.log(response.data);
+      context.commit("userPush", response.data);
+    },
   },
   modules: {},
-
-  
 });

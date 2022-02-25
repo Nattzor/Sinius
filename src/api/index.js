@@ -7,10 +7,13 @@ export function saveToken(token) {
 }
 
 export async function login(email, password) {
-  return await axios.item("/auth", { email, password });
+  return await axios.post("/auth/", { email, password });
 }
 
 export async function getItems() {
   return await axios.get("/items");
 }
 
+export async function registerUser(email, name, password, address) {
+  return await axios.post("/register/", { email, name, password, address });
+}
