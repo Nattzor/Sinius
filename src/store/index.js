@@ -16,7 +16,7 @@ export default new Vuex.Store({
     items: {},
     cart: [],
     price: [],
-    itemList: []
+    itemList: [],
     products: [],
     currentUser: [],
     users: [],
@@ -51,14 +51,18 @@ export default new Vuex.Store({
    
   },
   getters: {
-    getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
+    // getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
     cart(state){
       return state.cart.map(cartItem => ({
         id: cartItem.id,
         ...state.items[cartItem.id],
         amount: cartItem.amount
       }))
-    }
+    },
+    getItemsByCategory: state => category => state.items.filter(items => items.category == category),
+    currentUser(state) {
+      return state.currentUser;
+    },
   },
    
   actions: {
@@ -68,23 +72,15 @@ export default new Vuex.Store({
       API.saveToken(response.data.token);
       context.commit("saveAuthData", response.data);
     },
-    addToCart(state, item) {
-      state.cart.push(item);
-    },
+    // addToCart(state, item) {
+    //   state.cart.push(item);
+    // },
     userPush(state, user) {
       state.users.push(user);
     },
     authUsers(state, user) {
       state.users.push(user);
     },
-  },
-  getters: {
-    getItemsByCategory: state => category => state.items.filter(items => items.category == category),
-    currentUser(state) {
-      return state.currentUser;
-    },
-  },
-  actions: {
     // async authenticate(context, credentials) {
     //   const response = await API.login(credentials.email, credentials.password);
     //   console.log(response);
@@ -102,7 +98,7 @@ export default new Vuex.Store({
     updateCart({commit}, {id, amount}){
 
       commit('updateCartItem', {id, amount})
-    }
+    },
     async registerUser(context, credentials) {
       const response = await API.registerUser(credentials.email, credentials.name, credentials.password, credentials.address);
       API.saveToken(response.data.token);
