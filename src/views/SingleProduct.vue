@@ -21,7 +21,7 @@
     <div class="productPlacement">
       <h1>Related Products</h1>
       <article class="productGrid">
-        <ProductCard v-for="item in items" :key="item.id" :singleItem="item" />
+        <ProductCard v-for="(item, index) in items" :key="index" :singleItem="item" />
       </article>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.state.itemList;
+      return this.$store.state.items;
     },
   },
 };

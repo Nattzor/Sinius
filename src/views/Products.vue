@@ -3,7 +3,7 @@
     <Category class="Category" @changeCategory="changeCategory" />
     <div class="productPlacement">
       <article class="productGrid">
-        <ProductCard v-for="item in items" :key="item.id" :singleItem="item"/>
+        <ProductCard v-for="(item, index) in items" :key="index" :singleItem="item"/>
       </article>
     </div>
   </div>
@@ -31,7 +31,7 @@ export default {
    computed: {
     items() {
       if (this.category == 'all') {
-    return this.$store.state.itemList;
+       return this.$store.state.items;
       } else {return this.$store.state.itemList.filter(itemList => itemList.category == this.category)}
       },
     }
