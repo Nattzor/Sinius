@@ -16,7 +16,7 @@
             <fa class="priceTag" icon="fa-solid fa-tag" rotation="90" />
             <h2 class="productPrice">{{ item.price }}kr</h2>
           </div>
-          <button class="add-to-cart">
+          <button class="add-to-cart" @click="addToCart(item)">
             <i class="gg-shopping-cart"></i> ADD TO CART
           </button>
         </div>
@@ -47,6 +47,11 @@ export default {
   components: { Category },
   data() {
     return {};
+  },
+  methods: {
+    addToCart(item){
+      this.$store.dispatch('addToCart', item)
+    },
   },
   computed: {
     item() {
