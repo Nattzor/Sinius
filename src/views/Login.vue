@@ -22,7 +22,7 @@
           v-model="loginDetails.password"
         />
       </div>
-      <button class="btn" @click="authLogin" >Login</button>
+      <button class="btn" @click="authLogin">Login</button>
       <fa icon="fa-solid fa-lock" />
       <h2>
         <router-link to="/Signup">Signup</router-link>
@@ -33,17 +33,19 @@
 
 <script>
 export default {
-  data() {return{
-    loginDetails: {
-      email: "",
-      password: "",
-    }
-  }},
+  data() {
+    return {
+      loginDetails: {
+        email: "",
+        password: "",
+      },
+    };
+  },
   methods: {
-    authLogin(){
-        this.$store.dispatch("authUser", this.loginDetails);
-        this.$store.dispatch("userAccount", this.userDetails);
-    }
+    authLogin() {
+      this.$store.dispatch("authUser", this.loginDetails);
+      this.$router.push("/userAccount");
+    },
   },
 };
 </script>
@@ -52,7 +54,7 @@ export default {
 .container {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   align-content: center;
   justify-content: center;
   margin-bottom: 2rem;

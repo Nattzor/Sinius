@@ -1,14 +1,37 @@
 <template>
-  <div class="userAccount">
-    <Category />
-    
+  <div v-if="user" class="userAccount">
+    <h1>{{user.name}}</h1>
+    <h1>{{user.email}}</h1>
+    <h1>{{user.role}}</h1>
   </div>
 </template>
 
 <script>
-import Category from "@/components/Category";
 export default {
-  components: { Category },
+  computed: {
+    user() {
+      this.$store.dispatch("userAccount");
+      return this.$store.getters.currentUser[0];
+    },
+    // userDetails() {
+    //   if (this.user) {
+    //     console.log(this.user.name)
+    //     return {
+    //       name: this.user.name,
+    //       // address: {
+    //       //   street: this.user.address.street,
+    //       //   city: this.user.address.city,
+    //       //   zip: this.user.address.zip,
+    //       // },
+    //     };
+    //   } else {
+    //     return {};
+    //   }
+    // },
+    // getUserDetails() {
+    //   return this.$store.getters.currentUser;
+    // },
+  },
 };
 </script>
 
