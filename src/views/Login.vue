@@ -26,6 +26,17 @@
         <router-link to="/Signup">Signup</router-link>
       </h2>
     </div>
+    <div class="password">
+       <h1 class="">Password</h1>
+       <br>
+      <input class="input-field" type="text" placeholder="Type password here">
+    </div>
+    <button class="btn">Submit</button>
+    <fa icon="fa-regular fa-lock" />
+    <h2>
+    <router-link to="/Signup">Signup</router-link>
+    </h2>
+  </div>
   </div>
 </template>
 
@@ -36,6 +47,8 @@ export default {};
 <style scoped>
 .container {
   display: flex;
+  align-items: center;
+  justify-content: center; 
   align-content: center;
   justify-content: center;
   margin-bottom: 2rem;

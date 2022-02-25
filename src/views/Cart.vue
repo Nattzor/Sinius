@@ -78,8 +78,26 @@
       </div>
       <hr>
     </div>
-
-
+<div>
+  <div class="cart-item-wrapper">
+<li class="cart-li" v-for="cartItem in cart" :key="cartItem.id">
+         <img
+        class="cart-img"
+        :src="'http://localhost:5000//images/' + cartItem.imgFile"
+        alt="The image of the product"
+      />
+          <label class="cart-desc">
+            {{cartItem.title}}
+            {{cartItem.shortDesc}}
+          </label>
+           <label class="cart-price">{{cartItem.price}} Kr</label>
+          
+          <button @click="increase(cartItem)">+</button>
+          {{cartItem.amount}}
+          <button @click="decrease(cartItem)">-</button>
+        </li>
+        </div>
+</div>
 
 
 
@@ -102,7 +120,19 @@
 
 <script>
 export default {
-};
+  computed: {
+    cart(){
+      return this.$store.getters.cart
+  }},
+  methods: {
+    increase(cartItem){
+      this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
+    },
+    decrease(cartItem){
+      this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount--})
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -269,5 +299,16 @@ border: 1px solid #7C7D7D;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.cart-img{
+  width: 7rem;
+  height: 8rem;
+}
+.cart-item-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.cart-li{
+
 }
 </style>

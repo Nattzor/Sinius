@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     item() {
-      return this.$store.state.items.find(
+      return this.$store.state.itemList.find(
         (item) => item.id == this.$route.params.id
       );
     },
