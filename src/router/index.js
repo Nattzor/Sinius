@@ -8,6 +8,7 @@ import Login from '../views/Login.vue'
 import SavedProducts from '../views/SavedProducts'
 import Signup from '../views/Signup.vue'
 import SingleProduct from '../views/SingleProduct.vue'
+import userAccount from '../views/userAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/SavedProducts',
     name: 'SavedProducts',
     component: SavedProducts
+  },
+  {
+    path: '/userAccount',
+    name: 'userAccount',
+    component: userAccount
   },
 ]
 

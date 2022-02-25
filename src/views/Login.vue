@@ -9,6 +9,7 @@
           class="input-field"
           type="text"
           placeholder="Type Email here"
+          v-model="loginDetails.email"
         />
       </div>
       <div class="password">
@@ -18,9 +19,10 @@
           class="input-field"
           type="password"
           placeholder="Type password here"
+          v-model="loginDetails.password"
         />
       </div>
-      <button class="btn">Submit</button>
+      <button class="btn" @click="authLogin" >Login</button>
       <fa icon="fa-solid fa-lock" />
       <h2>
         <router-link to="/Signup">Signup</router-link>
@@ -41,7 +43,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {return{
+    loginDetails: {
+      email: "",
+      password: "",
+    }
+  }},
+  methods: {
+    authLogin(){
+        this.$store.dispatch("authUser", this.loginDetails);
+        this.$store.dispatch("userAccount", this.userDetails);
+    }
+  },
+};
 </script>
 
 <style scoped>
