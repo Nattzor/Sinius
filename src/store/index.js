@@ -39,39 +39,50 @@ export default new Vuex.Store({
       if(inCart){
         inCart.amount++
       }else{
-    state.cart.push({id: singleItem.id, amount: 1})
+    state.cart.push({id: singleItem.id, amount: 1, price: singleItem.price})
   }
   //localStorage.setItem("snius-cart", JSON.stringify(state.cart))
     },
     updateCartItem(state, {id, amount}){
       const inCart = state.cart.find(cartItem => cartItem.id == id)
-      
       inCart.amount = amount
-    }
+    },
    
   },
   getters: {
-    getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
     cart(state){
       return state.cart.map(cartItem => ({
         id: cartItem.id,
         ...state.items[cartItem.id],
-        amount: cartItem.amount
+        amount: cartItem.amount,
+        price: cartItem.price
+        
       }))
     },
+    cartItemCounter(state) {
+      return state.cart.length
+    },
+
     getItemsByCategory: state => category => state.items.filter(items => items.category == category),
     currentUser(state) {
       return state.currentUser;
     },
+    total(state){
+      let total = 0;
+      state.cart.forEach(cartItem => {
+        total += cartItem.price * cartItem.amount
+      })
+      return total;
+    }
   },
    
   actions: {
-    async authenticate(context, credentials) {
-      const response = await API.login(credentials.email, credentials.password);
-      console.log(response);
-      API.saveToken(response.data.token);
-      context.commit("saveAuthData", response.data);
-    },
+ //   async authenticate(context, credentials) {
+  //   const response = await API.login(credentials.email, credentials.password);
+   //  console.log(response);
+    //  API.saveToken(response.data.token);
+    //  context.commit("saveAuthData", response.data);
+   // },
     // addToCart(state, item) {
     //   state.cart.push(item);
     // },
@@ -96,9 +107,9 @@ export default new Vuex.Store({
       commit('saveItemsInCart', singleItem)
     },
     updateCart({commit}, {id, amount}){
-
       commit('updateCartItem', {id, amount})
     },
+  
     async registerUser(context, credentials) {
       const response = await API.registerUser(credentials.email, credentials.name, credentials.password, credentials.address);
       API.saveToken(response.data.token);

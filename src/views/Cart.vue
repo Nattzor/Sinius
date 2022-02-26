@@ -91,11 +91,11 @@
             {{cartItem.shortDesc}}
           </label>
            <label class="cart-price">{{cartItem.price}} Kr</label>
-          
           <button @click="increase(cartItem)">+</button>
           {{cartItem.amount}}
           <button @click="decrease(cartItem)">-</button>
         </li>
+        <h1> {{total}} </h1>
         </div>
 </div>
 
@@ -123,14 +123,22 @@ export default {
   computed: {
     cart(){
       return this.$store.getters.cart
-  }},
+  },
+ total(){
+            return this.$store.getters.total;
+        }
+  },
   methods: {
     increase(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
     },
     decrease(cartItem){
+      if (this.cartItem.amount === 0){
+      this.cartItem.amount = +1
+      }
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount--})
-    }
+    },
+   
   }
 }
 </script>
