@@ -94,9 +94,9 @@
           <button @click="increase(cartItem)">+</button>
           {{cartItem.amount}}
           <button :disabled="cartItem.amount <= 1" @click="decrease(cartItem)">-</button>
-          <button @click="removeFromCart(cartItem)">remove</button>
+         <a href="#" class="close"  @click.prevent="removeFromCart(cartItem)">X remove</a>
         </li>
-        <h1> {{total}} </h1>
+        <h1> TOTAL AMOUNT:{{total}} </h1>
         </div>
 </div>
 
@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     removeFromCart(cartItem){
-    this.$store.dispatch('removeFromCart', cartItem)
+    this.$store.dispatch('removeFromCart', {id: cartItem.id})
     },
     increase(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
@@ -317,7 +317,16 @@ border: 1px solid #7C7D7D;
   display: flex;
   flex-direction: column;
 }
-.cart-li{
-
+.close {
+ cursor: pointer;
+ 
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+  color: red;
+}
+.close:hover {
+ font-size: 2rem;
 }
 </style>
