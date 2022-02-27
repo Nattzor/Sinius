@@ -47,6 +47,13 @@ export default new Vuex.Store({
       const inCart = state.cart.find(cartItem => cartItem.id == id)
       inCart.amount = amount
     },
+    removeCartItem(state, cartItem){
+      state.cart = state.cart.filter(itemList => {
+        return itemList.cartItem.id !== cartItem.id
+      })
+    }
+
+    
    
   },
   getters: {
@@ -60,7 +67,12 @@ export default new Vuex.Store({
       }))
     },
     cartItemCounter(state) {
-      return state.cart.length
+      let totalAmount = 0;
+      state.cart.forEach(cartItem => {
+        totalAmount += cartItem.amount
+      })
+      return totalAmount;
+    
     },
 
     getItemsByCategory: state => category => state.items.filter(items => items.category == category),
@@ -131,6 +143,10 @@ export default new Vuex.Store({
       console.log(response.data);
       context.commit("authUsers", response.data);
     },
+    removeFromCart({commit}, cartItem){ 
+      commit('removeCartItem', cartItem)
+    },
+  
   },
   modules: {},
 });

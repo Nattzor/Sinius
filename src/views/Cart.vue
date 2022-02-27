@@ -93,7 +93,8 @@
            <label class="cart-price">{{cartItem.price}} Kr</label>
           <button @click="increase(cartItem)">+</button>
           {{cartItem.amount}}
-          <button @click="decrease(cartItem)">-</button>
+          <button :disabled="cartItem.amount <= 1" @click="decrease(cartItem)">-</button>
+          <button @click="removeFromCart(cartItem)">remove</button>
         </li>
         <h1> {{total}} </h1>
         </div>
@@ -129,13 +130,13 @@ export default {
         }
   },
   methods: {
+    removeFromCart(cartItem){
+    this.$store.dispatch('removeFromCart', cartItem)
+    },
     increase(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
     },
     decrease(cartItem){
-      if (this.cartItem.amount === 0){
-      this.cartItem.amount = +1
-      }
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount--})
     },
    
