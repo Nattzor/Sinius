@@ -90,15 +90,15 @@
            <h1> {{cartItem.title}} </h1>
             <h1>{{cartItem.shortDesc}}</h1>
           </label>
-           <label class="cart-price"><h2>{{cartItem.price}} Kr</h2></label>
+           <label class="cart-price"><h2>{{cartItem.price | toCurrency}}</h2></label>
           <button class="inc-btn" @click="increase(cartItem)">+</button>
           <p class="btn-amount">{{cartItem.amount}} </p>
           <button class="dec-btn" :disabled="cartItem.amount <= 1" @click="decrease(cartItem)">-</button>
          <a href="#" class="close"  @click.prevent="removeFromCart(cartItem)">remove</a>
          <hr class="cart-line">
-         <h2 class="single-amount">{{cartItem.price * cartItem.amount}} Kr</h2>
+         <h2 class="single-amount">{{cartItem.price * cartItem.amount | toCurrency}} </h2>
         </li>
-        <h1 class="total-amnt"> TOTAL AMOUNT:{{total}} </h1>
+        <h1 class="total-amnt"> Total Amount: {{total | toCurrency}} </h1>
         <router-link class="checkout-cart" to="/Checkout"> Checkout </router-link>
         </div>
 </div>
@@ -137,7 +137,9 @@ export default {
   },
   methods: {
     removeFromCart(cartItem){
+      if(confirm("Do you really want to delete product from cart?")) { 
     this.$store.dispatch('removeFromCart', {id: cartItem.id})
+    }
     },
     increase(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
@@ -326,7 +328,6 @@ border: 1px solid #7C7D7D;
 }
 .close {
  cursor: pointer;
- 
   top: 50%;
   right: 0%;
   padding: 12px 16px;
@@ -353,7 +354,36 @@ border: 1px solid #7C7D7D;
     background: transparent;
     font-size: 20px;
     box-shadow: 0px 0px 0px 2px #23DB4C;
-    margin-left: 9rem;
+    margin-left: 7.3rem;
+}
+.inc-btn:hover {
+  transition-duration: 0.3s;
+  background-color: #36a54e;
+}
+
+.inc-btn:after {
+  content: "";
+  display: block;
+  border-radius: 10em;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px rgb(255, 255, 255);
+}
+
+.inc-btn:active:after {
+  box-shadow: 0 0 0 0 rgb(27, 63, 35);
+  border-radius: 10em;
+  left: 0;
+  top:0;
+  opacity: 1;
+  transition: 0s;
+}
+.inc-btn:active {
+  top: 5px;
 }
 .dec-btn{
    color: #3E3333 !important;
@@ -364,9 +394,39 @@ border: 1px solid #7C7D7D;
     font-size: 20px;
     box-shadow: 0px 0px 0px 2px #b60c0c;
 }
+.dec-btn:hover {
+  transition-duration: 0.3s;
+  background-color: #bd2d14;
+}
+
+.dec-btn:after {
+  content: "";
+  display: block;
+  border-radius: 10em;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px rgb(255, 255, 255);
+}
+
+.dec-btn:active:after {
+  box-shadow: 0 0 0 0 rgb(119, 21, 21);
+  border-radius: 10em;
+  left: 0;
+  top:0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.dec-btn:active {
+  top: 5px;
+}
 .btn-amount{
   border-radius: 6px;
-   color: red;
+   color: rgb(41, 37, 37);
     height: 26px;
     width: 26px;
     margin: 0 5px;
@@ -381,7 +441,7 @@ border: 1px solid #7C7D7D;
   flex-direction: column;
 }
 .cart-price{
-   margin-left: 12rem;
+   margin-left: 11rem;
 }
 .cart-line{
   margin: 2rem;
