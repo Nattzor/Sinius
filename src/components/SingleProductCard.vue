@@ -14,7 +14,7 @@
         <div class="tagPriceCart">
           <div class="tagAndPrice">
             <fa class="priceTag" icon="fa-solid fa-tag" rotation="90" />
-            <h2 class="productPrice">{{ item.price }}kr</h2>
+            <h2 class="productPrice">{{ item.price | toCurrency }}</h2>
           </div>
           <button class="add-to-cart" @click="addToCart(item)">
             <i class="gg-shopping-cart"></i> ADD TO CART

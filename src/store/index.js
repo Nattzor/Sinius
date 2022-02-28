@@ -4,8 +4,19 @@ import * as API from "@/api";
 
 Vue.use(Vuex);
 
+Vue.filter('toCurrency', function (value) {
+  if (typeof value !== "number") {
+      return value;
+  }
+  var formatter = new Intl.NumberFormat('sv', {
+      style: 'currency',
+      currency: 'SEK'
+  });
+  return formatter.format(value);
+});
 //const cart = localStorage.getItem('sinus-cart') ?
 //JSON.parse(localStorage.getItem('sinus-cart')) :
+
 //[]
 
 export default new Vuex.Store({
@@ -70,7 +81,7 @@ export default new Vuex.Store({
     
     },
 
-    getItemsByCategory: state => category => state.items.filter(items => items.category == category),
+   // getItemsByCategory: state => category => state.items.filter(items => items.category == category),
     currentUser(state) {
       return state.currentUser;
     },
