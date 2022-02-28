@@ -4,11 +4,14 @@
       <router-link to="/">
         <img class="logo" src="@/assets/sinus-logo-landscape.svg" alt="" />
       </router-link>
-        <router-link class="routerLinks" to="/Products"> Products </router-link>
-        <router-link class="routerLinks" to=""> About us </router-link>
-        <router-link class="routerLinks" to=""> Contact </router-link>
+      <router-link class="routerLinks" to="/Products"> Products </router-link>
+      <router-link class="routerLinks" to=""> About us </router-link>
+      <router-link class="routerLinks" to=""> Contact </router-link>
       <div class="rightLinks">
-        <router-link class="routerLinks" to="/Login">
+        <router-link v-if="user.length > 0" class="routerLinks" to="/userAccount">
+          <fa icon="fa-solid fa-user" />
+        </router-link>
+        <router-link v-else-if="user.length <= 0" class="routerLinks" to="/Login">
           <fa icon="fa-solid fa-user" />
         </router-link>
         <router-link class="routerLinks" to="/SavedProducts">
@@ -32,11 +35,13 @@
 
 <script>
 export default {
- 
   computed: {
     cartItemCounter(){
       return this.$store.getters.cartItemCounter
-    }
+    },
+    user() {
+      return this.$store.getters.currentUser;
+    },
   }
 };
 </script>
@@ -61,7 +66,11 @@ export default {
 .lowerHeader {
   width: 100%;
   height: 5rem;
-  background: linear-gradient(to bottom, rgba(204, 204, 204, 1), rgba(204, 204, 204, 0));
+  background: linear-gradient(
+    to bottom,
+    rgba(204, 204, 204, 1),
+    rgba(204, 204, 204, 0)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +101,7 @@ export default {
   border-color: #cccccc;
   height: 50px;
   width: 424px;
-  background:#ececec;
+  background: #ececec;
   font-size: 18px;
 }
   .total-amount {
