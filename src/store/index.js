@@ -49,7 +49,13 @@ export default new Vuex.Store({
       state.cart = state.cart.filter(cartItem => {
        return cartItem.id !== id
       })
-    }
+    },
+    userPush(state, user) {
+      state.users.push(user);
+    },
+    authUsers(state, user) {
+      state.currentUser.push(user);
+    },
   },
   getters: {
     cart(state){
@@ -91,12 +97,6 @@ export default new Vuex.Store({
      console.log(response);
       API.saveToken(response.data.token);
       context.commit("saveAuthData", response.data);
-    },
-    userPush(state, user) {
-      state.users.push(user);
-    },
-    authUsers(state, user) {
-      state.users.push(user);
     },
     async fetchItems(context) {
       const response = await API.getItems();
