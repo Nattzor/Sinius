@@ -2,7 +2,8 @@
 <article>
   <h2>Review items and shipping</h2>
    <h2>Ship to</h2>
-<form class="container">
+   <form>
+<div class="container">
   <label for="country">Country or region</label>
   <select id="country" v-model="country">
   <option v-for="(country, index) in countries"
@@ -31,10 +32,8 @@
 
   <label for="phone">Phone Number</label>
   <input type="text" placeholder="Enter Phone number" name="phone" v-model="userDetails.phoneNumber" required />
-
-<button type="done" class="btn">Done</button>
-   </form>
-  <form class="containerCard">
+   </div>
+  <div class="containerCard">
     <h2>Pay with </h2>
 <div class="card">
 <input type="radio"  value="visa"  name="excards"  id="visa"  v-model="cards">
@@ -52,8 +51,27 @@
 <input type="radio"  value="klarna"  name="excards"  id="klarna"  v-model="cards">
 <fa class="icon" icon="fa-solid fa-credit-card" />
 <label for="klarna">Klarna</label>
-</div>
+</div>  
+<label for="cardHolder">Cardholder Name</label><br>
+      <input v-model="cardInfo.name" type="text" id="cardHolder" placeholder="Firstname Lastname" required>
+      <label for="cardNum">Card Number</label><br>
+      <input v-model="cardInfo.cardNum" type="text" id="cardNum" maxlength="16" required>
+          <label for="month">Month</label>
+          <select name="month" v-model="cardInfo.month">
+            <option v-for="month in months" :key="month" value:value="month">
+              {{ month }}
+            </option>
+          </select>
+          <label for="year">Year</label>
+          <select name="year" v-model="cardInfo.year">
+            <option v-for="year in years" :key="year" name="year">
+              {{ year }}
+            </option>
+          </select>
+  <label for="cardCcv">CCV</label><br>
+      <input v-model="cardInfo.ccv" type="text" id="cardCcv" maxlength="3" required>
 <button type="confirm" class="btn">Confirm and pay</button>
+</div>
   </form>
 </article>
   
@@ -90,10 +108,31 @@ export default {
           value:'Norway'
         }
       ],
+      cardInfo:{
+            cardNum: '',
+            year: '',
+            month: '',
+            ccv: '',
+      },
       cards: '',
-      }
+      months: [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+      ],
+      years: ['2022', '2023', '2024', '2025', '2026', '2027'],
     }
   }
+}
 </script>
 
 <style scoped>
@@ -131,6 +170,7 @@ h1 {
 
 .card {
   padding: 1rem;
+  margin-left: 2rem;
 }
 
 .icon {
