@@ -8,7 +8,7 @@ Vue.filter('toCurrency', function (value) {
   if (typeof value !== "number") {
       return value;
   }
-  var formatter = new Intl.NumberFormat('sv', {
+  const formatter = new Intl.NumberFormat('sv', {
       style: 'currency',
       currency: 'SEK'
   });
@@ -39,8 +39,8 @@ export default new Vuex.Store({
     },
     saveItems(state, items) {
       for (let singleItem of items) {
-        state.itemList.push(singleItem);
-        Vue.set(state.items, singleItem.id, singleItem);
+        state.items = state.itemList.map(items => items)
+        Vue.set(state.itemList, singleItem.id, singleItem);
       }
     },
     saveItemsInCart(state, singleItem){
