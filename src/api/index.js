@@ -19,7 +19,7 @@ export function userAuthToken(token) {
 // }
 
 export async function getItems() {
-  return await axios.get("/items");
+  return await axios.get("/items")
 }
 
 export async function registerUser(email, name, password, address) {

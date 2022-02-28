@@ -18,7 +18,8 @@
           <fa icon="fa-solid fa-heart" />
         </router-link>
         <router-link class="routerLinks" to="/Cart">
-          <fa icon="fa-solid fa-bag-shopping" />
+          <fa icon="fa-solid fa-bag-shopping"/>
+             <span class="total-amount">{{ cartItemCounter }}</span>
         </router-link>
       </div>
     </div>
@@ -35,10 +36,13 @@
 <script>
 export default {
   computed: {
+    cartItemCounter(){
+      return this.$store.getters.cartItemCounter
+    },
     user() {
       return this.$store.getters.currentUser;
     },
-  },
+  }
 };
 </script>
 
@@ -100,4 +104,18 @@ export default {
   background: #ececec;
   font-size: 18px;
 }
+  .total-amount {
+      align-items: center;
+      background: lightblue;
+      border-radius: 50%;
+      display: flex;
+      font-weight: bold;
+      height: 2rem;
+      justify-content: center;
+      padding: 0.5rem;
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      width: 2rem;
+    }
 </style>

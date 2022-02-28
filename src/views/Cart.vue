@@ -87,21 +87,25 @@
         alt="The image of the product"
       />
           <label class="cart-desc">
-            {{cartItem.title}}
-            {{cartItem.shortDesc}}
+           <h1> {{cartItem.title}} </h1>
+            <h1>{{cartItem.shortDesc}}</h1>
           </label>
-           <label class="cart-price">{{cartItem.price}} Kr</label>
-          
-          <button @click="increase(cartItem)">+</button>
-          {{cartItem.amount}}
-          <button @click="decrease(cartItem)">-</button>
+           <label class="cart-price"><h2>{{cartItem.price}} Kr</h2></label>
+          <button class="inc-btn" @click="increase(cartItem)">+</button>
+          <p class="btn-amount">{{cartItem.amount}} </p>
+          <button class="dec-btn" :disabled="cartItem.amount <= 1" @click="decrease(cartItem)">-</button>
+         <a href="#" class="close"  @click.prevent="removeFromCart(cartItem)">remove</a>
+         <hr class="cart-line">
+         <h2 class="single-amount">{{cartItem.price * cartItem.amount}} Kr</h2>
         </li>
+        <h1 class="total-amnt"> TOTAL AMOUNT:{{total}} </h1>
+        <router-link class="checkout-cart" to="/Checkout"> Checkout </router-link>
         </div>
 </div>
 
 
 
-<router-link class="checkout-cart" to="/Checkout"> Checkout </router-link>
+
   </div>
   
 
@@ -123,14 +127,25 @@ export default {
   computed: {
     cart(){
       return this.$store.getters.cart
-  }},
+  },
+ total(){
+            return this.$store.getters.total;
+        },
+         singleTotal(){
+            return this.$store.getters.singleTotal;
+        },
+  },
   methods: {
+    removeFromCart(cartItem){
+    this.$store.dispatch('removeFromCart', {id: cartItem.id})
+    },
     increase(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount++})
     },
     decrease(cartItem){
       this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount--})
-    }
+    },
+   
   }
 }
 </script>
@@ -271,16 +286,17 @@ border: 2px solid #757575;
   margin: 1rem;
 }
 .checkout-cart{
-width: 445px;
-height: 94px;
 background: #F79E1B;
 border-radius: 10px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
-font-weight: 500;
-font-size: 25px;;
+font-weight: 200;
+font-size: 55px;;
 text-align: center;
 color: #FFFFFF;
+align-self: flex-end;
+padding-block: 0.5rem;
+margin: 25px;
 }
 .items-wrapper{
 width: 1168px;
@@ -308,7 +324,73 @@ border: 1px solid #7C7D7D;
   display: flex;
   flex-direction: column;
 }
+.close {
+ cursor: pointer;
+ 
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+  color: red;
+}
+.close:hover {
+ font-size: 2rem;
+}
 .cart-li{
+  padding-top: 2rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  text-align: center;
 
+  
+}
+.inc-btn{
+    color: #3E3333 !important;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    background: transparent;
+    font-size: 20px;
+    box-shadow: 0px 0px 0px 2px #23DB4C;
+    margin-left: 9rem;
+}
+.dec-btn{
+   color: #3E3333 !important;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    background: transparent;
+    font-size: 20px;
+    box-shadow: 0px 0px 0px 2px #b60c0c;
+}
+.btn-amount{
+  border-radius: 6px;
+   color: red;
+    height: 26px;
+    width: 26px;
+    margin: 0 5px;
+    font-size: 20px;
+    box-shadow: 0px 0px 13px 1px #DED6D6, inset 0px 0px 10px 1px rgb(145, 143, 56), 0px 0px 4px rgb(75, 17, 184);font-size: 22px;
+    display: inline-block;
+    text-align: center;
+}
+.cart-desc{
+  margin-left: 7rem;
+  display: flex;
+  flex-direction: column;
+}
+.cart-price{
+   margin-left: 12rem;
+}
+.cart-line{
+  margin: 2rem;
+}
+.total-amnt{
+  align-self: flex-end;
+}
+.single-amount{
+    margin-left: 1.4rem;
+    text-align: center;
 }
 </style>
