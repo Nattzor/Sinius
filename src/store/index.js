@@ -41,7 +41,7 @@ export default new Vuex.Store({
       }else{
     state.cart.push({id: singleItem.id, amount: 1, price: singleItem.price})
   }
-  localStorage.setItem("snius-cart", JSON.stringify(state.cart))
+  //localStorage.setItem("snius-cart", JSON.stringify(state.cart))
     },
     updateCartItem(state, {id, amount}){
       const inCart = state.cart.find(cartItem => cartItem.id == id)
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         total += cartItem.price * cartItem.amount
       })
       return total;
-    }
+    },
   },
    
   actions: {
