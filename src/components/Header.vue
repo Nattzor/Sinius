@@ -8,12 +8,12 @@
       <router-link class="routerLinks" to=""> About us </router-link>
       <router-link class="routerLinks" to=""> Contact </router-link>
       <div class="rightLinks">
-        <router-link v-if="user" class="routerLinks" to="/Login">
+        <router-link v-if="user.length > 0" class="routerLinks" to="/userAccount">
           <fa icon="fa-solid fa-user" />
         </router-link>
-        <!-- <router-link v-else-if="!user" class="routerLinks" to="/Login">
+        <router-link v-else-if="user.length <= 0" class="routerLinks" to="/Login">
           <fa icon="fa-solid fa-user" />
-        </router-link> -->
+        </router-link>
         <router-link class="routerLinks" to="/SavedProducts">
           <fa icon="fa-solid fa-heart" />
         </router-link>

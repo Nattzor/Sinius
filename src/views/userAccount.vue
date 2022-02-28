@@ -1,8 +1,8 @@
 <template>
   <div v-if="user" class="userAccount">
-    <h1>{{user.name}}</h1>
-    <h1>{{user.email}}</h1>
-    <h1>{{user.role}}</h1>
+    <h1>Name: {{user.name}}</h1>
+    <h1>Email: {{user.email}}</h1>
+    <h1>Role: {{user.role}}</h1>
   </div>
 </template>
 
@@ -10,7 +10,6 @@
 export default {
   computed: {
     user() {
-      this.$store.dispatch("userAccount");
       return this.$store.getters.currentUser[0];
     },
     // userDetails() {

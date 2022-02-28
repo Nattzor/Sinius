@@ -19,6 +19,7 @@ export default new Vuex.Store({
     currentUser: [],
     users: [],
     state: [],
+    orderHistory: [],
   },
   mutations: {
     saveAuthData(state, authData) {
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     authUsers(state, user) {
       state.currentUser.push(user);
     },
+    createOrderHistory(state, payload) {
+      state.orderHistory = payload.map(order => order.id == payload.id);
+    }
   },
   getters: {
     // getItemsByCategory: state => category => state.itemList.filter(itemList => itemList.category == category),
@@ -69,15 +73,12 @@ export default new Vuex.Store({
     currentUser(state) {
       return state.currentUser;
     },
+    getOrderHistory(state) {
+      return state.orderHistory
+    }
   },
 
   actions: {
-    async authenticate(context, credentials) {
-      const response = await API.login(credentials.email, credentials.password);
-      console.log(response);
-      API.saveToken(response.data.token);
-      context.commit("saveAuthData", response.data);
-    },
     // addToCart(state, item) {
     //   state.cart.push(item);
     // },
