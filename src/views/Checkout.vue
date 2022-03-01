@@ -2,7 +2,7 @@
   <article>
     <h2>Review items and shipping</h2>
     <h2>Ship to</h2>
-    <form @submit.prevent="$store.dispatch('checkout')">
+    <form @submit.prevent="sendOrder">
       <div class="container">
         <label for="country">Country or region</label>
         <select id="country" v-model="userDetails.country">
@@ -150,7 +150,7 @@
           maxlength="3"
           required
         />
-        <button type="confirm" class="btn" @click="$store.dispatch('checkout')">
+        <button type="confirm" class="btn" >
           Confirm and pay
         </button>
         <p v-if="$store.state.checkOutStatus">
@@ -229,8 +229,14 @@ export default {
     },
     item(){
       return this.cartProductId.map(item => item.productId)
-    }
+    },
   },
+  methods: {
+    sendOrder(){
+      this.$store.dispatch('checkout', this.userDetails)
+      this.$router.replace('/placedOrder')
+    }
+  }
 };
 </script>
 

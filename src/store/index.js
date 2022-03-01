@@ -122,12 +122,6 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async authenticate(context, credentials) {
-      const response = await API.login(credentials.email, credentials.password);
-      console.log(response);
-      API.saveToken(response.data.token);
-      context.commit("saveAuthData", response.data);
-    },
     async fetchItems(context) {
       const response = await API.getItems();
       context.commit("saveItems", response.data);
@@ -139,17 +133,14 @@ export default new Vuex.Store({
       commit("updateCartItem", { id, amount });
     },
 
-    checkout({ state, commit }) {
-      API.PlacedOrder(
-        state.cart,
-        () => {
-          commit("emptyCart");
-          commit("setCheckoutStatus", "success");
-        },
-        () => {
-          commit("setCheckoutStatus", "fail");
-        }
-      );
+    async checkout( context, payload ) {
+      console.log(payload);
+      const response = await API.PlacedOrder(
+          context.state.items,
+          payload.shippingAddress,
+        );
+        console.log(response.data)
+        context.commit("ordersPlaced", response.data);
     },
 
     async registerUser(context, credentials) {
