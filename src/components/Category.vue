@@ -12,7 +12,7 @@
         />
       </h2>
       <div class="categoryOptions" v-show="activeClothesDropdown">
-        <button @click="$emit('changeCategory', 'hoodie')"> HoodiesGRILLKORV </button>
+        <button @click="$emit('changeCategory', 'hoodie')"> Hoodies </button>
         <button @click="$emit('changeCategory', 'tshirt')"> T-shirt </button>
         <button @click="$emit('changeCategory', 'socks')"> Socks </button>
         <button @click="$emit('changeCategory', 'cap')"> Caps </button>

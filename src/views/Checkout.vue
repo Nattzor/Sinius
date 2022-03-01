@@ -213,16 +213,23 @@ export default {
         "12",
       ],
       years: ["2022", "2023", "2024", "2025", "2026", "2027"],
-      items: {
-        purchasedItems: this.$store.getters.cart,
-        productIdList: this.$store.getters.cartProductId,
-      }
+      // items: {
+      //   purchasedItems: this.$store.getters.cart,
+      //   productIdList: this.$store.getters.cartProductId,
+      // },
+      productId: [],
     };
   },
   computed: {
     cart() {
       return this.$store.getters.cart;
     },
+    cartProductId(){
+      return this.$store.getters.cartProductId
+    },
+    item(){
+      return this.cartProductId.map(item => item.productId)
+    }
   },
 };
 </script>
