@@ -75,11 +75,6 @@ export default {
     this.$emit('changeCategory', this.showCategory);
     }, 
   },
-    computed: {
-      filteredItems() {
-        return this.$store.getters.getItemsByCategory(this.showCategory)
-      }, 
-    }
   }
 </script>
 

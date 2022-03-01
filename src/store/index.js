@@ -4,25 +4,24 @@ import * as API from "@/api";
 
 Vue.use(Vuex);
 
-Vue.filter('toCurrency', function (value) {
+Vue.filter("toCurrency", function (value) {
   if (typeof value !== "number") {
-      return value;
+    return value;
   }
-  var formatter = new Intl.NumberFormat('sv', {
-      style: 'currency',
-      currency: 'SEK'
+  const formatter = new Intl.NumberFormat("sv", {
+    style: "currency",
+    currency: "SEK",
   });
   return formatter.format(value);
 });
 //const cart = localStorage.getItem('sinus-cart') ?
 //JSON.parse(localStorage.getItem('sinus-cart')) :
 
-//[]
-
 export default new Vuex.Store({
   state: {
     email: null,
     items: {},
+    shippingAddress: {},
     cart: [],
     price: [],
     itemList: [],
@@ -31,6 +30,7 @@ export default new Vuex.Store({
     users: [],
     state: [],
     orderHistory: [],
+    checkOutStatus: null,
   },
   mutations: {
     saveAuthData(state, authData) {
@@ -43,23 +43,29 @@ export default new Vuex.Store({
         Vue.set(state.items, singleItem.id, singleItem);
       }
     },
-    saveItemsInCart(state, singleItem){
-      const inCart = state.cart.find(cartItem => cartItem.id == singleItem.id)
-      if(inCart){
-        inCart.amount++
-      }else{
-    state.cart.push({id: singleItem.id, amount: 1, price: singleItem.price})
-  }
-  //localStorage.setItem("snius-cart", JSON.stringify(state.cart))
+    saveItemsInCart(state, singleItem) {
+      const inCart = state.cart.find(
+        (cartItem) => cartItem.id == singleItem.id
+      );
+      if (inCart) {
+        inCart.amount++;
+      } else {
+        state.cart.push({
+          id: singleItem.id,
+          amount: 1,
+          price: singleItem.price,
+        });
+      }
+      //localStorage.setItem("snius-cart", JSON.stringify(state.cart))
     },
-    updateCartItem(state, {id, amount}){
-      const inCart = state.cart.find(cartItem => cartItem.id == id)
-      inCart.amount = amount
+    updateCartItem(state, { id, amount }) {
+      const inCart = state.cart.find((cartItem) => cartItem.id == id);
+      inCart.amount = amount;
     },
-    removeCartItem(state, {id}){
-      state.cart = state.cart.filter(cartItem => {
-       return cartItem.id !== id
-      })
+    removeCartItem(state, { id }) {
+      state.cart = state.cart.filter((cartItem) => {
+        return cartItem.id !== id;
+      });
     },
     userPush(state, user) {
       state.users.push(user);
@@ -67,45 +73,58 @@ export default new Vuex.Store({
     authUsers(state, user) {
       state.currentUser.push(user);
     },
+    ordersPlaced(state, order) {
+      state.orderHistory.push(order);
+    },
+    shippingAddress(state, address) {
+      state.shippingAddress.push(address);
+    },
+    setCheckoutStatus(state, status) {
+      state.checkOutStatus = status;
+    },
+    emptyCart(state) {
+      state.cart = [];
+    },
   },
   getters: {
-    cart(state){
-      return state.cart.map(cartItem => ({
+    cart(state) {
+      return state.cart.map((cartItem) => ({
         id: cartItem.id,
         ...state.items[cartItem.id],
         amount: cartItem.amount,
-        price: cartItem.price
-        
-      }))
+        price: cartItem.price,
+      }));
+    },
+    cartProductId(state) {
+      return state.cart.map((cartItem) => ({
+        productId: cartItem.id,
+      }));
     },
     cartItemCounter(state) {
       let totalAmount = 0;
-      state.cart.forEach(cartItem => {
-        totalAmount += cartItem.amount
-      })
+      state.cart.forEach((cartItem) => {
+        totalAmount += cartItem.amount;
+      });
       return totalAmount;
-    
     },
-
-   // getItemsByCategory: state => category => state.items.filter(items => items.category == category),
     currentUser(state) {
       return state.currentUser;
     },
-    total(state){
+    total(state) {
       let total = 0;
-      state.cart.forEach(cartItem => {
-        total += cartItem.price * cartItem.amount
-      })
+      state.cart.forEach((cartItem) => {
+        total += cartItem.price * cartItem.amount;
+      });
       return total;
     },
     getOrderHistory(state) {
-      return state.orderHistory
-    }
+      return state.orderHistory;
+    },
   },
   actions: {
     async authenticate(context, credentials) {
-     const response = await API.login(credentials.email, credentials.password);
-     console.log(response);
+      const response = await API.login(credentials.email, credentials.password);
+      console.log(response);
       API.saveToken(response.data.token);
       context.commit("saveAuthData", response.data);
     },
@@ -113,13 +132,26 @@ export default new Vuex.Store({
       const response = await API.getItems();
       context.commit("saveItems", response.data);
     },
-    addToCart({commit}, singleItem) {
-      commit("saveItemsInCart", singleItem)
+    addToCart({ commit }, singleItem) {
+      commit("saveItemsInCart", singleItem);
     },
-    updateCart({commit}, {id, amount}){
-      commit("updateCartItem", {id, amount})
+    updateCart({ commit }, { id, amount }) {
+      commit("updateCartItem", { id, amount });
     },
-  
+
+    checkout({ state, commit }) {
+      API.PlacedOrder(
+        state.cart,
+        () => {
+          commit("emptyCart");
+          commit("setCheckoutStatus", "success");
+        },
+        () => {
+          commit("setCheckoutStatus", "fail");
+        }
+      );
+    },
+
     async registerUser(context, credentials) {
       const response = await API.registerUser(
         credentials.email,
@@ -149,8 +181,8 @@ export default new Vuex.Store({
       console.log(response.data);
       context.commit("authUsers", response.data);
     },
-    removeFromCart({commit}, {id}){ 
-      commit("removeCartItem", {id})
+    removeFromCart({ commit }, { id }) {
+      commit("removeCartItem", { id });
     },
   },
   modules: {},

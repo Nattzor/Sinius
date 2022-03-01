@@ -14,12 +14,12 @@ export function userAuthToken(token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
-// export async function login(email, password) {
-//   return await axios.post("/auth/", { email, password });
-// }
-
 export async function getItems() {
   return await axios.get("/items")
+}
+
+export async function PlacedOrder(items, shippingAddress) {
+  return await axios.post("/orders/", {items, shippingAddress})
 }
 
 export async function registerUser(email, name, password, address) {

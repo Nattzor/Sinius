@@ -1,138 +1,230 @@
 <template>
-<article>
-  <h2>Review items and shipping</h2>
-   <h2>Ship to</h2>
-   <form>
-<div class="container">
-  <label for="country">Country or region</label>
-  <select id="country" v-model="country">
-  <option v-for="(country, index) in countries"
-  :value="country.value"
-  :key="index">
-  {{country.label}}
-  </option>
-  </select>
-  <label for="Fname">Name </label>
-  <input type="text" placeholder="Name" name="name" v-model="userDetails.name" required />
+  <article>
+    <h2>Review items and shipping</h2>
+    <h2>Ship to</h2>
+    <form @submit.prevent="$store.dispatch('checkout')">
+      <div class="container">
+        <label for="country">Country or region</label>
+        <select id="country" v-model="userDetails.country">
+          <option
+            v-for="(country, index) in userDetails.countries"
+            :value="country.value"
+            :key="index"
+          >
+            {{ country.label }}
+          </option>
+        </select>
+        <label for="Fname">Name </label>
+        <input
+          type="text"
+          placeholder="Name"
+          name="name"
+          v-model="userDetails.name"
+          required
+        />
 
-  <label for="email">Email</label>
-  <input type="text" placeholder="Enter Email" name="email" v-model="userDetails.emailAddress" required />
+        <label for="email">Email</label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          v-model="userDetails.emailAddress"
+          required
+        />
 
-  <label for="street">Street Address</label>
-  <input type="text" placeholder="Street Address" name="street" v-model="userDetails.address.street" required />
+        <label for="street">Street Address</label>
+        <input
+          type="text"
+          placeholder="Street Address"
+          name="street"
+          v-model="userDetails.shippingAddress.street"
+          required
+        />
 
-  <label for="city">City</label>
-  <input type="text" placeholder="City" name="city" v-model="userDetails.address.city" required />
+        <label for="city">City</label>
+        <input
+          type="text"
+          placeholder="City"
+          name="city"
+          v-model="userDetails.shippingAddress.city"
+          required
+        />
 
-  <label for="zip">Zip</label>
-  <input type="text" placeholder="Zip" name="zip" v-model="userDetails.address.zip" required />
+        <label for="zip">Zip</label>
+        <input
+          type="text"
+          placeholder="Zip"
+          name="zip"
+          v-model="userDetails.shippingAddress.zip"
+          required
+        />
 
-  <label for="state">State/Province/Region</label>
-  <input type="text" placeholder="State" name="state" v-model="userDetails.address.state" required />
+        <label for="state">State/Province/Region</label>
+        <input
+          type="text"
+          placeholder="State"
+          name="state"
+          v-model="userDetails.state"
+          required
+        />
 
-  <label for="phone">Phone Number</label>
-  <input type="text" placeholder="Enter Phone number" name="phone" v-model="userDetails.phoneNumber" required />
-   </div>
-  <div class="containerCard">
-    <h2>Pay with </h2>
-<div class="card">
-<input type="radio"  value="visa"  name="excards"  id="visa"  v-model="cards">
-<fa class="icon" icon="fa-brands fa-cc-visa" />
-<label for="visa">Visa/Mastercard</label>
-</div>
+        <label for="phone">Phone Number</label>
+        <input
+          type="text"
+          placeholder="Enter Phone number"
+          name="phone"
+          v-model="userDetails.phoneNumber"
+          required
+        />
+      </div>
+      <div class="containerCard">
+        <h2>Pay with</h2>
+        <div class="card">
+          <input
+            type="radio"
+            value="visa"
+            name="excards"
+            id="visa"
+            v-model="cards"
+          />
+          <fa class="icon" icon="fa-brands fa-cc-visa" />
+          <label for="visa">Visa/Mastercard</label>
+        </div>
 
-<div class="card">
-<input type="radio"  value="paypal"  name="excards"  id="paypal"  v-model="cards">
-<fa class="icon" icon="fa-brands fa-cc-paypal" />
-<label for="paypal">PayPal</label>
-</div>
+        <div class="card">
+          <input
+            type="radio"
+            value="paypal"
+            name="excards"
+            id="paypal"
+            v-model="cards"
+          />
+          <fa class="icon" icon="fa-brands fa-cc-paypal" />
+          <label for="paypal">PayPal</label>
+        </div>
 
-<div class="card">
-<input type="radio"  value="klarna"  name="excards"  id="klarna"  v-model="cards">
-<fa class="icon" icon="fa-solid fa-credit-card" />
-<label for="klarna">Klarna</label>
-</div>  
-<label for="cardHolder">Cardholder Name</label><br>
-      <input v-model="cardInfo.name" type="text" id="cardHolder" placeholder="Firstname Lastname" required>
-      <label for="cardNum">Card Number</label><br>
-      <input v-model="cardInfo.cardNum" type="text" id="cardNum" maxlength="16" required>
-          <label for="month">Month</label>
-          <select name="month" v-model="cardInfo.month">
-            <option v-for="month in months" :key="month" value:value="month">
-              {{ month }}
-            </option>
-          </select>
-          <label for="year">Year</label>
-          <select name="year" v-model="cardInfo.year">
-            <option v-for="year in years" :key="year" name="year">
-              {{ year }}
-            </option>
-          </select>
-  <label for="cardCcv">CCV</label><br>
-      <input v-model="cardInfo.ccv" type="text" id="cardCcv" maxlength="3" required>
-<button type="confirm" class="btn">Confirm and pay</button>
-</div>
-  </form>
-</article>
-  
+        <div class="card">
+          <input
+            type="radio"
+            value="klarna"
+            name="excards"
+            id="klarna"
+            v-model="cards"
+          />
+          <fa class="icon" icon="fa-solid fa-credit-card" />
+          <label for="klarna">Klarna</label>
+        </div>
+        <label for="cardHolder">Cardholder Name</label><br />
+        <input
+          v-model="cardInfo.name"
+          type="text"
+          id="cardHolder"
+          placeholder="Firstname Lastname"
+          required
+        />
+        <label for="cardNum">Card Number</label><br />
+        <input
+          v-model="cardInfo.cardNum"
+          type="text"
+          id="cardNum"
+          maxlength="16"
+          required
+        />
+        <label for="month">Month</label>
+        <select name="month" v-model="cardInfo.month">
+          <option v-for="month in months" :key="month" value:value="month">
+            {{ month }}
+          </option>
+        </select>
+        <label for="year">Year</label>
+        <select name="year" v-model="cardInfo.year">
+          <option v-for="year in years" :key="year" name="year">
+            {{ year }}
+          </option>
+        </select>
+        <label for="cardCcv">CCV</label><br />
+        <input
+          v-model="cardInfo.ccv"
+          type="text"
+          id="cardCcv"
+          maxlength="3"
+          required
+        />
+        <button type="confirm" class="btn" @click="$store.dispatch('checkout')">
+          Confirm and pay
+        </button>
+        <p v-if="$store.state.checkOutStatus">
+          {{ $store.state.checkOutStatus }}
+        </p>
+      </div>
+    </form>
+  </article>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       userDetails: {
-      name: '',
-      address: {
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
-      },
-      emailAddress: '',
-      phoneNumber: '',
-      },
-      country: 'SWEDEN',
-      countries:[
-        {
-          label:'Sweden',
-          value:'Sweden'
+        name: "",
+        shippingAddress: {
+          city: "",
+          street: "",
+          zip: "",
         },
-        {
-          label: 'Finland',
-          value:'Finland'
-
-        },
-        {
-          label:'Norway',
-          value:'Norway'
-        }
-      ],
-      cardInfo:{
-            cardNum: '',
-            year: '',
-            month: '',
-            ccv: '',
+        state: "",
+        emailAddress: "",
+        phoneNumber: "",
+        country: "SWEDEN",
+        countries: [
+          {
+            label: "Sweden",
+            value: "Sweden",
+          },
+          {
+            label: "Finland",
+            value: "Finland",
+          },
+          {
+            label: "Norway",
+            value: "Norway",
+          },
+        ],
       },
-      cards: '',
+      cardInfo: {
+        cardNum: "",
+        year: "",
+        month: "",
+        ccv: "",
+      },
+      cards: "",
       months: [
-        '01',
-        '02',
-        '03',
-        '04',
-        '05',
-        '06',
-        '07',
-        '08',
-        '09',
-        '10',
-        '11',
-        '12',
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
       ],
-      years: ['2022', '2023', '2024', '2025', '2026', '2027'],
-    }
-  }
-}
+      years: ["2022", "2023", "2024", "2025", "2026", "2027"],
+      items: {
+        purchasedItems: this.$store.getters.cart,
+        productIdList: this.$store.getters.cartProductId,
+      }
+    };
+  },
+  computed: {
+    cart() {
+      return this.$store.getters.cart;
+    },
+  },
+};
 </script>
 
 <style scoped>
