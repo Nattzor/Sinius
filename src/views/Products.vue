@@ -41,11 +41,12 @@ export default {
     items() {
       if (this.category == "all") {
         return this.$store.state.items;
-      } else{
-        return this.$store.state.itemList.filter(
+      } else{  return this.$store.state.itemList.filter(
           (itemList) => itemList.category == this.category
         );
+        
       }
+     
     }          
 },
 }

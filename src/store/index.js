@@ -25,7 +25,7 @@ export default new Vuex.Store({
     currentUser: [],
     users: [],
     orderHistory: [],
-    category: []
+    category: [],
   },
   mutations: {
     saveItems(state, items) {
@@ -92,6 +92,7 @@ export default new Vuex.Store({
      );
       console.log(payload.category)
       context.commit("productByCategory", response.data);
+      console.log(response.data)
     },
     async checkout(context, payload) {
       const response = await API.PlacedOrder(

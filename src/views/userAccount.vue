@@ -3,23 +3,34 @@
     <h1>Name: {{ user.name }}</h1>
     <h1>Email: {{ user.email }}</h1>
     <h1>Role: {{ user.role }}</h1>
-    <div v-if="getOrderHistory" class="orderHistory">
+    <br />
+    <div v-if="order" class="orderHistory">
       <h1>
         Order History:
+        <br />
+        <br />
         <h3>
-          Order Status: {{ getOrderHistory.status }}
+          Order Status: {{ order.status }}
           <br />
-          <div v-for="item in getOrderHistory.items" :key="item.id">
-            <h2>jsiuhgeös</h2>
-            Order id: {{ getOrderHistory.items[item].OrderId }}
+          Order id: {{ order.id }}
+          <br />
+          City: {{ order.shippingCity }}
+          <br />
+          Street: {{ order.shippingStreet }}
+          <br />
+          Zip: {{ order.shippingZip }}
+          <br />
+          <div v-for="(item, index) in order.items" :key="index">
             <br />
-            Product Id: {{ getOrderHistory.items[item].ProductId }}
+            Product Id: {{ item.ProductId }}
             <br />
-            Amount: {{ getOrderHistory.items[item].amount }}
+            Amount: {{ item.amount }}
             <br />
-            Id: {{ getOrderHistory.items[item].id }}
+            Pride: {{ item.price }}
             <br />
-            Price: {{ getOrderHistory.items[item].price }}
+            Subtotal: {{ item.price * item.amount }}
+            <br />
+            <br />
           </div>
         </h3>
       </h1>
@@ -29,18 +40,12 @@
 
 <script>
 export default {
-  methods: {
-    // getItems() {
-    //   this.$store.getters.getOrderHistory.map((item) => ({
-    //     id: item.id
-    //   }))
-    // },
-  },
+  methods: {},
   computed: {
     user() {
       return this.$store.getters.currentUser[0];
     },
-    getOrderHistory() {
+    order() {
       console.log(this.$store.getters.getOrderHistory[0]);
       return this.$store.getters.getOrderHistory[0];
     },
@@ -54,10 +59,5 @@ export default {
 }
 .orderHistory {
   width: 100%;
-  display: grid;
-}
-.orderHistory h1 {
-  display: grid;
-  grid-template-columns: auto auto;
 }
 </style>

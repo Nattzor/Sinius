@@ -253,7 +253,7 @@ cart() {
   methods: {
     sendOrder() {
       this.$store.dispatch("checkout", this.userDetails);
-      this.$router.replace("/placedOrder");
+      this.$router.push("/confirmedOrder");
     },
   },
 };
