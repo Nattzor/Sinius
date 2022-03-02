@@ -74,7 +74,7 @@ export default {
       }
     },
     changeCategory() {
-      this.$emit("changeCategory", this.showCategory);
+      this.$emit("changeCategory");
     },
   },
 };

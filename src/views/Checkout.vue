@@ -156,7 +156,32 @@
         </p>
       </div>
     </form>
+      <li class="cart-list" v-for="cartItem in cart" :key="cartItem.id">
+            <img
+              class="cart-img"
+              :src="'http://localhost:5000//images/' + cartItem.imgFile"
+              alt="The image of the product"
+            />
+            <label class="cart-desc">
+              <h1>{{ cartItem.title }}</h1>
+              <h1>{{ cartItem.shortDesc }}</h1>
+            </label>
+            <label class="cart-price">
+            <h2>{{ cartItem.price | toCurrency }}</h2></label
+            >
+            <p class="btn-amount">{{ cartItem.amount }}</p>
+         
+            <hr class="cart-line" />
+            <h2 class="single-amount">
+              {{ (cartItem.price * cartItem.amount) | toCurrency }}
+            </h2>
+          </li>
+          <div>
+          <h1>Total Amount: {{ total | toCurrency }}</h1>
+          </div>
+          
   </article>
+ 
 </template>
 
 <script>
@@ -214,10 +239,21 @@ export default {
       productId: [],
     };
   },
+  computed: {
+cart() {
+      return this.$store.getters.cart;
+    },
+    total() {
+      return this.$store.getters.total;
+    },
+    singleTotal() {
+      return this.$store.getters.singleTotal;
+    },
+  },
   methods: {
     sendOrder() {
       this.$store.dispatch("checkout", this.userDetails);
-      this.$router.replace("/placedOrder");
+      this.$router.push("/confirmedOrder");
     },
   },
 };
@@ -228,7 +264,10 @@ export default {
 * {
   font-family: "Work Sans", sans-serif;
 }
-
+.article{
+  display: flex;
+  flex-direction: row;
+}
 h1 {
   background-color: #e5e5e5;
   color: #888888;
@@ -272,5 +311,14 @@ h1 {
   padding: 1rem;
   border-radius: 2%;
   border: none;
+}
+.cart-list{
+  list-style: none;
+  height: 2rem;
+  width: 2rem;
+}
+.cart-img{
+  height: 5rem;
+  width: 5rem;
 }
 </style>

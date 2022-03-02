@@ -9,6 +9,7 @@ import SavedProducts from "../views/SavedProducts";
 import Signup from "../views/Signup.vue";
 import SingleProduct from "../views/SingleProduct.vue";
 import userAccount from "../views/userAccount.vue";
+import confirmedOrder from "../views/confirmedOrder.vue";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
     path: "/userAccount",
     name: "userAccount",
     component: userAccount,
+  },
+  {
+    path: "/confirmedOrder",
+    name: "confiremdOrder",
+    component: confirmedOrder,
   },
 ];
 
