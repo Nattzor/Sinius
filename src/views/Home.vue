@@ -31,7 +31,7 @@ export default {
         {
           id: 0,
           name: "Nathalie Larsson",
-          quote: "Att åka skatebord är det bästa jag vet.",
+          quote: "Att åka skatebord är det bästa jag vet. Det är det jag brinner för",
           article:
             "Jag älskar att åka skateboard. När jag inte är i skolan så är jag med mina vänner vid skate parken.",
           img: require("@/assets/skateboard1.jpeg"),
