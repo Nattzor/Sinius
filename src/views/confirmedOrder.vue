@@ -16,6 +16,7 @@
         Zip: {{ order.shippingZip }}
         <br />
       </h3>
+      <br />
       <li v-for="(item, index) in order.items" :key="index">
         Product Id: {{ item.ProductId }}
 
@@ -44,5 +45,8 @@ export default {
 .confirmedOrder {
   display: grid;
   justify-content: center;
+}
+.confirmedOrder ul {
+  list-style-type: none;
 }
 </style>
