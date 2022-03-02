@@ -83,7 +83,7 @@
     </div>
     <div class="items-wrapper">
       <div class="cart-items">
-        <h1>Your Items ({{ cartItem.amount }})</h1>
+        <h1>Your Items</h1>
         <hr />
         <div class="cart-items-desc">
           <h1>Items</h1>

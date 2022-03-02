@@ -1,5 +1,6 @@
 <template>
-  <article>
+  <article class="article-container">
+    <div class="checkout-form-container">
     <h2>Review items and shipping</h2>
     <h2>Ship to</h2>
     <form @submit.prevent="sendOrder">
@@ -156,6 +157,9 @@
         </p>
       </div>
     </form>
+    </div>
+    <div class="cart-list-container">
+      <h2> Your items </h2>
       <li class="cart-list" v-for="cartItem in cart" :key="cartItem.id">
             <img
               class="cart-img"
@@ -167,18 +171,19 @@
               <h1>{{ cartItem.shortDesc }}</h1>
             </label>
             <label class="cart-price">
-            <h2>{{ cartItem.price | toCurrency }}</h2></label
+            <h2>1 item price: {{ cartItem.price | toCurrency }}</h2></label
             >
-            <p class="btn-amount">{{ cartItem.amount }}</p>
+            <p class="btn-amount">Amount: {{ cartItem.amount }}</p>
          
             <hr class="cart-line" />
             <h2 class="single-amount">
-              {{ (cartItem.price * cartItem.amount) | toCurrency }}
+            {{ cartItem.amount }} item price {{ (cartItem.price * cartItem.amount) | toCurrency }}
             </h2>
           </li>
           <div>
           <h1>Total Amount: {{ total | toCurrency }}</h1>
           </div>
+    </div>
           
   </article>
  
@@ -254,6 +259,7 @@ cart() {
     sendOrder() {
       this.$store.dispatch("checkout", this.userDetails);
       this.$router.push("/confirmedOrder");
+      this.$store.state.cart = []
     },
   },
 };
@@ -264,7 +270,7 @@ cart() {
 * {
   font-family: "Work Sans", sans-serif;
 }
-.article{
+.article-container{
   display: flex;
   flex-direction: row;
 }
@@ -314,11 +320,15 @@ h1 {
 }
 .cart-list{
   list-style: none;
-  height: 2rem;
-  width: 2rem;
+ margin-left: 12rem;
+ 
 }
 .cart-img{
   height: 5rem;
   width: 5rem;
+}
+.cart-list-container{
+  display: flex;
+  flex-direction: column;
 }
 </style>
