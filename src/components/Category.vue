@@ -1,41 +1,43 @@
 <template>
-<div class="categoryTemplate">
-  <div class="category">
-    <h1>CATEGORY</h1>
-    <div class="categoryPadding" @click="triangleIconDownClothes">
-      <h2>
-        Clothes
-        <fa v-if="clothesDropdown" icon="fa-solid fa-caret-right" />
-        <fa
-          v-else-if="clothesDropdown === false"
-          icon="fa-solid fa-caret-down"
-        />
-      </h2>
-      <div class="categoryOptions" v-show="activeClothesDropdown">
-        <button @click="$emit('changeCategory', 'hoodie')"> Hoodies </button>
-        <button @click="$emit('changeCategory', 'tshirt')"> T-shirt </button>
-        <button @click="$emit('changeCategory', 'socks')"> Socks </button>
-        <button @click="$emit('changeCategory', 'cap')"> Caps </button>
+  <div class="categoryTemplate">
+    <div class="category">
+      <h1 @click="$emit('changeCategory', 'all')">CATEGORY</h1>
+      <div class="categoryPadding" @click="triangleIconDownClothes">
+        <h2>
+          Clothes
+          <fa v-if="clothesDropdown" icon="fa-solid fa-caret-right" />
+          <fa
+            v-else-if="clothesDropdown === false"
+            icon="fa-solid fa-caret-down"
+          />
+        </h2>
+        <div class="categoryOptions" v-show="activeClothesDropdown">
+          <h3 @click="$emit('changeCategory', 'hoodie')">Hoodies</h3>
+          <h3 @click="$emit('changeCategory', 'tshirt')">T-shirt</h3>
+          <h3 @click="$emit('changeCategory', 'socks')">Socks</h3>
+          <h3 @click="$emit('changeCategory', 'cap')">Caps</h3>
+        </div>
       </div>
-    </div>
-    <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
-      <h2>
-        Accessories
-        <fa v-if="accessoriesDropdown" icon="fa-solid fa-caret-right" />
-        <fa
-          v-else-if="accessoriesDropdown === false"
-          icon="fa-solid fa-caret-down"
-        />
-      </h2>
-      <div class="categoryOptions" v-show="activeAccessoriesDropdown">
-  <button @click="$emit('changeCategory', 'skateboard')"> Skateboard </button>
-<button @click="$emit('changeCategory', 'wheel')"> Wheel </button>
-<button @click="$emit('changeCategory', 'griptape')"> Griptape </button>
-<button @click="$emit('changeCategory', 'totebag')"> Totebags </button>
+      <div class="categoryPaddingBottom" @click="triangleIconDownAccessories">
+        <h2>
+          Accessories
+          <fa v-if="accessoriesDropdown" icon="fa-solid fa-caret-right" />
+          <fa
+            v-else-if="accessoriesDropdown === false"
+            icon="fa-solid fa-caret-down"
+          />
+        </h2>
+        <div class="categoryOptions" v-show="activeAccessoriesDropdown">
+          <h3 @click="$emit('changeCategory', 'skateboard')">
+            Skateboard
+          </h3>
+          <h3 @click="$emit('changeCategory', 'wheel')">Wheel</h3>
+          <h3 @click="$emit('changeCategory', 'griptape')">Griptape</h3>
+          <h3 @click="$emit('changeCategory', 'totebag')">Totebags</h3>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -72,14 +74,14 @@ export default {
       }
     },
     changeCategory() {
-    this.$emit('changeCategory', this.showCategory);
-    }, 
+      this.$emit("changeCategory", this.showCategory);
+    },
   },
-  }
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .categoryTemplate {
   padding-top: 150px;
@@ -99,7 +101,7 @@ export default {
   font-weight: normal;
 }
 .category h1 {
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
   font-weight: normal;
   font-size: 28px;
   display: flex;
@@ -121,5 +123,6 @@ export default {
 .categoryOptions h3 {
   font-weight: normal;
   padding-left: 35%;
+  cursor: pointer;
 }
 </style>

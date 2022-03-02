@@ -8,8 +8,10 @@
       />
     </router-link>
 
-    <h1 class="product-card-name">{{singleItem.title}} Sinus {{ singleItem.category }}</h1>
-    <h1 class="product-card-price">{{ singleItem.price | toCurrency}}</h1>
+    <h1 class="product-card-name">
+      {{ singleItem.title }} Sinus {{ singleItem.category }}
+    </h1>
+    <h1 class="product-card-price">{{ singleItem.price | toCurrency }}</h1>
     <button class="add-to-cart" @click="addToCart(singleItem)">
       <i class="gg-shopping-cart"></i> ADD TO CART
     </button>
@@ -24,13 +26,11 @@ export default {
   data() {
     return {};
   },
-  computed: {
-  },
+  computed: {},
   methods: {
-   addToCart(singleItem){
-      this.$store.dispatch('addToCart', singleItem)
+    addToCart(singleItem) {
+      this.$store.dispatch("addToCart", singleItem);
     },
-  
   },
 };
 </script>

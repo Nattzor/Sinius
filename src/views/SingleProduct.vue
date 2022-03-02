@@ -21,7 +21,11 @@
     <div class="productPlacement">
       <h1>Related Products</h1>
       <article class="productGrid">
-        <ProductCard v-for="(item, index) in items" :key="index" :singleItem="item" />
+        <ProductCard
+          v-for="(item, index) in items"
+          :key="index"
+          :singleItem="item"
+        />
       </article>
     </div>
   </div>

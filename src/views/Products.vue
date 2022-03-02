@@ -3,7 +3,11 @@
     <Category class="Category" @changeCategory="changeCategory" />
     <div class="productPlacement">
       <article class="productGrid">
-        <ProductCard v-for="(item, index) in items" :key="index" :singleItem="item"/>
+        <ProductCard
+          v-for="(item, index) in items"
+          :key="index"
+          :singleItem="item"
+        />
       </article>
     </div>
   </div>
@@ -17,25 +21,29 @@ export default {
   components: { Category, ProductCard },
   data() {
     return {
-      category: 'all'
-    }
-    },
-     methods: {
-       changeCategory(choosenCategory) {
-         this.category = choosenCategory 
-       }
-     },
-     mounted(){
-    this.$store.dispatch('fetchItems')
+      category: "all",
+    };
   },
-   computed: {
+  methods: {
+    changeCategory(choosenCategory) {
+      this.category = choosenCategory;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchItems");
+  },
+  computed: {
     items() {
-      if (this.category == 'all') {
-       return this.$store.state.items;
-      } else {return this.$store.state.itemList.filter(itemList => itemList.category == this.category)}
-      },
-    }
- }
+      if (this.category == "all") {
+        return this.$store.state.items;
+      } else {
+        return this.$store.state.itemList.filter(
+          (itemList) => itemList.category == this.category
+        );
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>

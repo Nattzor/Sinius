@@ -1,13 +1,9 @@
 <template>
-  <h1> ALL PRODUCTS THAT I LIKE</h1>
+  <h1>ALL PRODUCTS THAT I LIKE</h1>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

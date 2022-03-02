@@ -150,9 +150,7 @@
           maxlength="3"
           required
         />
-        <button type="confirm" class="btn" >
-          Confirm and pay
-        </button>
+        <button type="confirm" class="btn">Confirm and pay</button>
         <p v-if="$store.state.checkOutStatus">
           {{ $store.state.checkOutStatus }}
         </p>
@@ -166,15 +164,15 @@ export default {
   data() {
     return {
       userDetails: {
-        name: "",
+        name: "ced",
         shippingAddress: {
-          city: "",
-          street: "",
-          zip: "",
+          city: "sf",
+          street: "sf",
+          zip: "sf",
         },
-        state: "",
-        emailAddress: "",
-        phoneNumber: "",
+        state: "wef",
+        emailAddress: "ewf",
+        phoneNumber: "qfe",
         country: "SWEDEN",
         countries: [
           {
@@ -192,10 +190,10 @@ export default {
         ],
       },
       cardInfo: {
-        cardNum: "",
-        year: "",
-        month: "",
-        ccv: "",
+        cardNum: "f",
+        year: "2022",
+        month: "2",
+        ccv: "123",
       },
       cards: "",
       months: [
@@ -213,30 +211,15 @@ export default {
         "12",
       ],
       years: ["2022", "2023", "2024", "2025", "2026", "2027"],
-      // items: {
-      //   purchasedItems: this.$store.getters.cart,
-      //   productIdList: this.$store.getters.cartProductId,
-      // },
       productId: [],
     };
   },
-  computed: {
-    cart() {
-      return this.$store.getters.cart;
-    },
-    cartProductId(){
-      return this.$store.getters.cartProductId
-    },
-    item(){
-      return this.cartProductId.map(item => item.productId)
+  methods: {
+    sendOrder() {
+      this.$store.dispatch("checkout", this.userDetails);
+      this.$router.replace("/placedOrder");
     },
   },
-  methods: {
-    sendOrder(){
-      this.$store.dispatch('checkout', this.userDetails)
-      this.$router.replace('/placedOrder')
-    }
-  }
 };
 </script>
 
