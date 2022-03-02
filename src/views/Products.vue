@@ -27,23 +27,28 @@ export default {
   methods: {
     changeCategory(choosenCategory) {
       this.category = choosenCategory;
-    },
+      if (this.category ==  "hoodie" || this.category =="wheel" || this.category =="cap" || this.category =="tshirt" || this.category == "griptape" || this.category =="skateboard" || this.category =="totebag" || this.category =="socks") {
+          return this.$store.dispatch("fakkOff",  {category: this.category});
+    }
+  },
   },
   mounted() {
-    this.$store.dispatch("fetchItems");
-  },
+    if (this.category == "all") {
+    return this.$store.dispatch("fetchItems");
+  }
+},
   computed: {
     items() {
       if (this.category == "all") {
         return this.$store.state.items;
-      } else {
+      } else{
         return this.$store.state.itemList.filter(
           (itemList) => itemList.category == this.category
         );
       }
-    },
-  },
-};
+    }          
+},
+}
 </script>
 
 <style scoped>

@@ -2,6 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api/";
 
+
+export async function getProductByCategory (category) {
+return  await axios.get(`/items/?category=${category}`)
+}
+
 export function saveToken(token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
@@ -15,7 +20,7 @@ export function userAuthToken(token) {
 }
 
 export async function getItems() {
-  return await axios.get("/items")
+  return await axios.get("/items/")
 }
 
 export async function PlacedOrder(items, shippingAddress) {

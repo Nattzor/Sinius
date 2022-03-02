@@ -25,6 +25,7 @@ export default new Vuex.Store({
     currentUser: [],
     users: [],
     orderHistory: [],
+    category: []
   },
   mutations: {
     saveItems(state, items) {
@@ -65,14 +66,11 @@ export default new Vuex.Store({
     authUsers(state, user) {
       state.currentUser.push(user);
     },
-    ordersPlaced(state, order) {
-      state.orderHistory.push(order);
+    ordersPlaced(state, payload) {
+      state.orderHistory.push(payload);
     },
-    setCheckoutStatus(state, status) {
-      state.checkOutStatus = status;
-    },
-    emptyCart(state) {
-      state.cart = [];
+    productByCategory(state, payload){
+      state.category.push(payload)
     },
   },
 
@@ -88,6 +86,13 @@ export default new Vuex.Store({
       commit("updateCartItem", { id, amount });
     },
 
+    async fakkOff(context, payload) {
+      const response = await API.getProductByCategory(
+      payload.category
+     );
+      console.log(payload.category)
+      context.commit("productByCategory", response.data);
+    },
     async checkout(context, payload) {
       const response = await API.PlacedOrder(
         context.getters.cartIds,
