@@ -4,22 +4,52 @@
     <p>Please fill in this form to create an account.</p>
     <form class="container" @submit.prevent="signUpUser">
       <label for="Fname">Name </label>
-      <input type="text" placeholder="Name" name="name" v-model="userDetails.name" />
+      <input
+        type="text"
+        placeholder="Name"
+        name="name"
+        v-model="userDetails.name"
+      />
 
       <label for="email">Email</label>
-      <input type="text" placeholder="Enter Email" name="email" v-model="userDetails.email" />
+      <input
+        type="text"
+        placeholder="Enter Email"
+        name="email"
+        v-model="userDetails.email"
+      />
 
       <label for="street">Street Address</label>
-      <input type="text" placeholder="Street Address" name="street" v-model="userDetails.address.street" />
+      <input
+        type="text"
+        placeholder="Street Address"
+        name="street"
+        v-model="userDetails.address.street"
+      />
 
       <label for="city">City</label>
-      <input type="text" placeholder="City" name="city" v-model="userDetails.address.city" />
+      <input
+        type="text"
+        placeholder="City"
+        name="city"
+        v-model="userDetails.address.city"
+      />
 
       <label for="zip">Zip</label>
-      <input type="text" placeholder="Zip" name="zip" v-model="userDetails.address.zip" />
+      <input
+        type="text"
+        placeholder="Zip"
+        name="zip"
+        v-model="userDetails.address.zip"
+      />
 
       <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" v-model="userDetails.password" />
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="password"
+        v-model="userDetails.password"
+      />
 
       <!-- <label for="pswRepeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="pswRepeat" v-model="userDetails.pswRepeat" /> -->
@@ -68,7 +98,7 @@ export default {
         zip: false,
         city: false,
         password: false,
-      }
+      },
     };
   },
   methods: {

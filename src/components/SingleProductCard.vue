@@ -8,9 +8,7 @@
           :src="'http://localhost:5000/images/' + item.imgFile"
           alt="Blue Sweater"
         />
-        <h1 class="productName">
-          {{ item.title }} Sinus {{ item.category }}
-        </h1>
+        <h1 class="productName">{{ item.title }} Sinus {{ item.category }}</h1>
         <div class="tagPriceCart">
           <div class="tagAndPrice">
             <fa class="priceTag" icon="fa-solid fa-tag" rotation="90" />
@@ -35,7 +33,7 @@
             <option value="XL">XL</option>
           </select>
         </p>
-        <h3 class="productDescription">{{item.longDesc}}</h3>
+        <h3 class="productDescription">{{ item.longDesc }}</h3>
       </div>
     </div>
   </div>
@@ -49,8 +47,8 @@ export default {
     return {};
   },
   methods: {
-    addToCart(item){
-      this.$store.dispatch('addToCart', item)
+    addToCart(item) {
+      this.$store.dispatch("addToCart", item);
     },
   },
   computed: {

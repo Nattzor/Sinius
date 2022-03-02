@@ -19,27 +19,19 @@ Vue.filter("toCurrency", function (value) {
 
 export default new Vuex.Store({
   state: {
-    email: null,
     items: {},
-    shippingAddress: {},
     cart: [],
-    price: [],
     itemList: [],
-    products: [],
     currentUser: [],
     users: [],
-    state: [],
     orderHistory: [],
-    checkOutStatus: null,
   },
   mutations: {
-    saveAuthData(state, authData) {
-      state.token = authData.token;
-      state.email = authData.email;
-    },
     saveItems(state, items) {
       for (let singleItem of items) {
-        state.itemList.push(singleItem);
+        if (!state.itemList.find((item) => item.id === singleItem.id)) {
+          state.itemList.push(singleItem);
+        }
         Vue.set(state.items, singleItem.id, singleItem);
       }
     },
@@ -76,14 +68,59 @@ export default new Vuex.Store({
     ordersPlaced(state, order) {
       state.orderHistory.push(order);
     },
-    shippingAddress(state, address) {
-      state.shippingAddress.push(address);
-    },
     setCheckoutStatus(state, status) {
       state.checkOutStatus = status;
     },
     emptyCart(state) {
       state.cart = [];
+    },
+  },
+
+  actions: {
+    async fetchItems(context) {
+      const response = await API.getItems();
+      context.commit("saveItems", response.data);
+    },
+    addToCart({ commit }, singleItem) {
+      commit("saveItemsInCart", singleItem);
+    },
+    updateCart({ commit }, { id, amount }) {
+      commit("updateCartItem", { id, amount });
+    },
+
+    async checkout(context, payload) {
+      const response = await API.PlacedOrder(
+        context.getters.cartIds,
+        payload.shippingAddress
+      );
+      context.commit("ordersPlaced", response.data);
+    },
+
+    async registerUser(context, credentials) {
+      const response = await API.registerUser(
+        credentials.email,
+        credentials.name,
+        credentials.password,
+        credentials.address
+      );
+      API.saveToken(response.data.token);
+      context.commit("userPush", response.data);
+    },
+    async authUser(context, credentials) {
+      const response = await API.authUser(
+        credentials.email,
+        credentials.password
+      );
+      API.saveUserToken(response.data.token);
+      context.commit("userPush", response.data);
+    },
+    async userAccount(context) {
+      const response = await API.userAccount();
+      API.userAuthToken(response.data.token);
+      context.commit("authUsers", response.data);
+    },
+    removeFromCart({ commit }, { id }) {
+      commit("removeCartItem", { id });
     },
   },
   getters: {
@@ -94,6 +131,13 @@ export default new Vuex.Store({
         amount: cartItem.amount,
         price: cartItem.price,
       }));
+    },
+    cartIds(state) {
+      const arr = [];
+      for (let i = 0; i < state.cart.length; i++) {
+        arr.push(state.cart[i].id);
+      }
+      return arr;
     },
     cartProductId(state) {
       return state.cart.map((cartItem) => ({
@@ -119,61 +163,6 @@ export default new Vuex.Store({
     },
     getOrderHistory(state) {
       return state.orderHistory;
-    },
-  },
-  actions: {
-    async fetchItems(context) {
-      const response = await API.getItems();
-      context.commit("saveItems", response.data);
-    },
-    addToCart({ commit }, singleItem) {
-      commit("saveItemsInCart", singleItem);
-    },
-    updateCart({ commit }, { id, amount }) {
-      commit("updateCartItem", { id, amount });
-    },
-
-    async checkout( context, payload ) {
-      console.log(payload);
-      const response = await API.PlacedOrder(
-          context.state.items,
-          payload.shippingAddress,
-        );
-        console.log(response.data)
-        context.commit("ordersPlaced", response.data);
-    },
-
-    async registerUser(context, credentials) {
-      const response = await API.registerUser(
-        credentials.email,
-        credentials.name,
-        credentials.password,
-        credentials.address
-      );
-      API.saveToken(response.data.token);
-
-      console.log(response.data);
-      context.commit("userPush", response.data);
-    },
-    async authUser(context, credentials) {
-      const response = await API.authUser(
-        credentials.email,
-        credentials.password
-      );
-      API.saveUserToken(response.data.token);
-
-      console.log(response.data);
-      context.commit("userPush", response.data);
-    },
-    async userAccount(context) {
-      const response = await API.userAccount();
-      API.userAuthToken(response.data.token);
-
-      console.log(response.data);
-      context.commit("authUsers", response.data);
-    },
-    removeFromCart({ commit }, { id }) {
-      commit("removeCartItem", { id });
     },
   },
   modules: {},
