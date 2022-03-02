@@ -25,7 +25,7 @@ export default new Vuex.Store({
     currentUser: [],
     users: [],
     orderHistory: [],
-    category: [],
+    category: {},
   },
   mutations: {
     saveItems(state, items) {
@@ -69,8 +69,13 @@ export default new Vuex.Store({
     ordersPlaced(state, payload) {
       state.orderHistory.push(payload);
     },
-    productByCategory(state, payload){
-      state.category.push(payload)
+    productByCategory(state, category){
+      for (let singleItem of category) {
+        if (!state.itemList.find((item) => item.id === singleItem.id)) {
+          state.itemList.push(singleItem);
+        }
+        Vue.set(state.category, singleItem.id, singleItem);
+      }
     },
   },
 
@@ -134,6 +139,7 @@ export default new Vuex.Store({
       return state.cart.map((cartItem) => ({
         id: cartItem.id,
         ...state.items[cartItem.id],
+        ...state.category[cartItem.id],
         amount: cartItem.amount,
         price: cartItem.price,
       }));
