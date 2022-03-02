@@ -42,7 +42,7 @@ export default {
       if (this.category == "all") {
         return this.$store.state.items;
       } else{  return this.$store.state.itemList.filter(
-          (itemList) => itemList.category == this.category
+          (item) => item.category == this.category
         );
         
       }

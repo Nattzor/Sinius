@@ -21,7 +21,7 @@
 <script>
 export default {
   props: {
-    singleItem: Object,
+    singleItem: Object
   },
   data() {
     return {};
@@ -51,6 +51,7 @@ export default {
 .product-img {
   margin-top: 20px;
   width: 203px;
+  max-height: 18rem;
 }
 .product-card-name {
   margin-top: 25px;
