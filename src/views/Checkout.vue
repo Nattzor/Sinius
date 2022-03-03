@@ -167,8 +167,8 @@
               alt="The image of the product"
             />
             <label class="cart-desc">
-              <h1>{{ cartItem.title }}</h1>
-              <h1>{{ cartItem.shortDesc }}</h1>
+              <h1>Name :{{ cartItem.title }}</h1>
+              <h1>Gender :{{ cartItem.shortDesc }}</h1>
             </label>
             <label class="cart-price">
             <h2>1 item price: {{ cartItem.price | toCurrency }}</h2></label
@@ -177,11 +177,11 @@
          
             <hr class="cart-line" />
             <h2 class="single-amount">
-            {{ cartItem.amount }} item price {{ (cartItem.price * cartItem.amount) | toCurrency }}
+            {{ cartItem.amount }} items price {{ (cartItem.price * cartItem.amount) | toCurrency }}
             </h2>
           </li>
           <div>
-          <h1>Total Amount: {{ total | toCurrency }}</h1>
+          <h1 class="tota">Total Amount: {{ total | toCurrency }}</h1>
           </div>
     </div>
           
@@ -330,5 +330,9 @@ h1 {
 .cart-list-container{
   display: flex;
   flex-direction: column;
+}
+.tota{
+  margin-left: 185px;
+  margin-top: 10px;
 }
 </style>

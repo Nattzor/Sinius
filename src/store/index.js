@@ -26,6 +26,7 @@ export default new Vuex.Store({
     users: [],
     orderHistory: [],
     category: {},
+    liked: []
   },
   mutations: {
     saveItems(state, items) {
@@ -51,6 +52,15 @@ export default new Vuex.Store({
       }
       //localStorage.setItem("snius-cart", JSON.stringify(state.cart))
     },
+    saveItemsInLiked(state, singleItem) {
+      if (!state.liked.find((item) => item.id === singleItem.id)){
+        state.liked.push({
+          id: singleItem.id,
+          price: singleItem.price,
+          amount: 1,
+        
+        })}},
+      
     updateCartItem(state, { id, amount }) {
       const inCart = state.cart.find((cartItem) => cartItem.id == id);
       inCart.amount = amount;
@@ -66,8 +76,8 @@ export default new Vuex.Store({
     authUsers(state, user) {
       state.currentUser.push(user);
     },
-    ordersPlaced(state, payload) {
-      state.orderHistory.push(payload);
+    ordersPlaced(state, item) {
+      state.orderHistory.push(item);
     },
     productByCategory(state, category){
       for (let singleItem of category) {
@@ -87,10 +97,12 @@ export default new Vuex.Store({
     addToCart({ commit }, singleItem) {
       commit("saveItemsInCart", singleItem);
     },
+    addToLiked({ commit }, singleItem) {
+      commit("saveItemsInLiked", singleItem);
+    },
     updateCart({ commit }, { id, amount }) {
       commit("updateCartItem", { id, amount });
     },
-
     async fakkOff(context, payload) {
       const response = await API.getProductByCategory(
       payload.category
@@ -153,12 +165,20 @@ export default new Vuex.Store({
     },
     cartProductId(state) {
       return state.cart.map((cartItem) => ({
-        productId: cartItem.id,
+        id: cartItem.id,
+        amount: cartItem.amount,
       }));
     },
     cartItemCounter(state) {
       let totalAmount = 0;
       state.cart.forEach((cartItem) => {
+        totalAmount += cartItem.amount;
+      });
+      return totalAmount;
+    },
+    likedItemCounter(state) {
+      let totalAmount = 0;
+      state.liked.forEach((cartItem) => {
         totalAmount += cartItem.amount;
       });
       return totalAmount;
@@ -175,6 +195,15 @@ export default new Vuex.Store({
     },
     getOrderHistory(state) {
       return state.orderHistory;
+    },
+    liked(state) {
+      return state.liked.map((cartItem) => ({
+        id: cartItem.id,
+        ...state.items[cartItem.id],
+        ...state.category[cartItem.id],
+        amount: cartItem.amount,
+        price: cartItem.price,
+      }));
     },
   },
   modules: {},

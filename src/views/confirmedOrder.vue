@@ -22,7 +22,7 @@
 
         Amount: {{ item.amount }}
 
-        Pride: {{ item.price }}
+        Price: {{ item.price }}
 
         Subtotal: {{ item.price * item.amount }}
       </li>
