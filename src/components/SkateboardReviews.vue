@@ -1,12 +1,12 @@
 <template>
   <article class="container">
       <div  v-for="person in person" :key="person.id">
-    <div class="topPart">
+    <div class="top-part">
       <img :src="person.img" />
       <h1>{{ person.name }}</h1>
       <h4>{{ person.quote }}</h4>
     </div>
-    <div class="bottomPart">
+    <div class="bottom-part">
       <p>{{ person.article }}</p>
     </div>
     </div>
@@ -39,12 +39,12 @@ img {
   width: 250px;
 }
 
-.topPart {
+.top-part {
   background-color: #b4b4b4;
   padding: 1rem;
 }
 
-.bottomPart {
+.bottom-part {
   display: grid;
   place-items: center;
   background-color: White;

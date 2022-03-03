@@ -2,7 +2,6 @@
 <article>
   <h1>ALL PRODUCTS THAT I LIKE</h1>
   <li class="liked-li" v-for="likedItem in liked" :key="likedItem.id">
-
             <img
               class="liked-img"
               :src="'http://localhost:5000//images/' + likedItem.imgFile"

@@ -44,7 +44,7 @@ export default {
   methods: {
     authLogin() {
       this.$store.dispatch("authUser", this.loginDetails);
-      this.$router.push("/userAccount");
+      this.$router.push("/UserAccount");
       this.$store.dispatch("userAccount");
     },
   },

@@ -1,41 +1,41 @@
 <template>
   <div>
-    <div class="Header">
+    <div class="header">
       <router-link to="/">
         <img class="logo" src="@/assets/sinus-logo-landscape.svg" alt="" />
       </router-link>
-      <router-link class="routerLinks" to="/Products"> Products </router-link>
-      <router-link class="routerLinks" to=""> About us </router-link>
-      <router-link class="routerLinks" to=""> Contact </router-link>
-      <div class="rightLinks">
+      <router-link class="router-links" to="/Products"> Products </router-link>
+      <router-link class="router-links" to=""> About us </router-link>
+      <router-link class="router-links" to=""> Contact </router-link>
+      <div class="right-links">
         <router-link
           v-if="user.length > 0"
-          class="routerLinks"
+          class="router-links"
           to="/userAccount"
         >
           <fa icon="fa-solid fa-user" />
         </router-link>
         <router-link
           v-else-if="user.length <= 0"
-          class="routerLinks"
+          class="router-links"
           to="/Login"
         >
           <fa icon="fa-solid fa-user" />
         </router-link>
-        <router-link class="routerLinks" to="/SavedProducts">
+        <router-link class="router-links" to="/SavedProducts">
           <fa icon="fa-solid fa-heart" />
            <span class="total-liked">{{ likedItemCounter }}</span>
         </router-link>
-        <router-link class="routerLinks" to="/Cart">
+        <router-link class="router-links" to="/Cart">
           <fa icon="fa-solid fa-bag-shopping" />
           <span class="total-amount">{{ cartItemCounter }}</span>
         </router-link>
       </div>
     </div>
-    <div class="lowerHeader">
-      <input class="searchBar" type="text" placeholder="search" />
-      <div class="getApp">
-        <fa class="downloadIcon" icon="fa-solid fa-download" />
+    <div class="lower-header">
+      <input class="search-bar" type="text" placeholder="search" />
+      <div class="get-app">
+        <fa class="download-icon" icon="fa-solid fa-download" />
         <p>Get mobile app</p>
       </div>
     </div>
@@ -63,7 +63,7 @@ export default {
 * {
   color: black;
 }
-.Header {
+.header {
   width: 100%;
   height: 10rem;
   background: #cccccc;
@@ -75,7 +75,7 @@ export default {
   font-size: 24px;
   font-weight: 700;
 }
-.lowerHeader {
+.lower-header {
   width: 100%;
   height: 5rem;
   background: linear-gradient(
@@ -91,10 +91,10 @@ export default {
   width: 15rem;
   padding-left: 2rem;
 }
-.routerLinks {
+.router-links {
   padding: 2rem;
 }
-.getApp {
+.get-app {
   display: flex;
   align-items: center;
   position: absolute;
@@ -104,11 +104,11 @@ export default {
   font-family: "Work Sans", sans-serif;
   font-weight: bold;
 }
-.downloadIcon {
+.download-icon {
   width: 4rem;
   font-size: 32px;
 }
-.searchBar {
+.search-bar {
   border-radius: 100px;
   border-color: #cccccc;
   height: 50px;

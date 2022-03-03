@@ -1,10 +1,10 @@
 <template>
-  <div v-if="user" class="userAccount">
+  <div v-if="user" class="user-account">
     <h1>Name: {{ user.name }}</h1>
     <h1>Email: {{ user.email }}</h1>
     <h1>Role: {{ user.role }}</h1>
     <br />
-    <div v-if="order" class="orderHistory">
+    <div v-if="order" class="order-history">
       <h1>
         Order History:
         <br />
@@ -46,7 +46,6 @@ export default {
       return this.$store.getters.currentUser[0];
     },
     order() {
-      console.log(this.$store.getters.getOrderHistory[0]);
       return this.$store.getters.getOrderHistory[0];
     },
   },
@@ -57,7 +56,7 @@ export default {
 .Category {
   position: absolute;
 }
-.orderHistory {
+.order-history {
   width: 100%;
 }
 </style>

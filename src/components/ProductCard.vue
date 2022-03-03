@@ -48,7 +48,7 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 223px;
+  width: 250px;
   height: 451px;
   left: 365px;
   top: 942px;
@@ -57,7 +57,8 @@ export default {
 .product-img {
   margin-top: 20px;
   width: 203px;
-  max-height: 18rem;
+  height: 186px;
+  object-fit: scale-down;
 }
 .product-card-name {
   margin-top: 25px;

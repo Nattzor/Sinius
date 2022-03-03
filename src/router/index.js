@@ -8,8 +8,8 @@ import Login from "../views/Login.vue";
 import SavedProducts from "../views/SavedProducts";
 import Signup from "../views/Signup.vue";
 import SingleProduct from "../views/SingleProduct.vue";
-import userAccount from "../views/userAccount.vue";
-import confirmedOrder from "../views/confirmedOrder.vue";
+import UserAccount from "../views/UserAccount.vue";
+import ConfirmedOrder from "../views/ConfirmedOrder.vue";
 
 Vue.use(VueRouter);
 
@@ -55,14 +55,14 @@ const routes = [
     component: SavedProducts,
   },
   {
-    path: "/userAccount",
-    name: "userAccount",
-    component: userAccount,
+    path: "/UserAccount",
+    name: "UserAccount",
+    component: UserAccount,
   },
   {
-    path: "/confirmedOrder",
-    name: "confiremdOrder",
-    component: confirmedOrder,
+    path: "/ConfirmedOrder",
+    name: "ConfiremdOrder",
+    component: ConfirmedOrder,
   },
 ];
 
