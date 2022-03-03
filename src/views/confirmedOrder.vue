@@ -14,7 +14,6 @@
         Street: {{ order.shippingStreet }}
         <br />
         Zip: {{ order.shippingZip }}
-        <br />
       </h3>
       <br />
       <li v-for="(item, index) in order.items" :key="index">
