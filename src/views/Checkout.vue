@@ -194,15 +194,15 @@ export default {
   data() {
     return {
       userDetails: {
-        name: "ced",
+        name: "",
         shippingAddress: {
-          city: "sf",
-          street: "sf",
-          zip: "sf",
+          city: "",
+          street: "",
+          zip: "",
         },
-        state: "wef",
-        emailAddress: "ewf",
-        phoneNumber: "qfe",
+        state: "",
+        emailAddress: "",
+        phoneNumber: "",
         country: "SWEDEN",
         countries: [
           {
@@ -220,10 +220,10 @@ export default {
         ],
       },
       cardInfo: {
-        cardNum: "f",
-        year: "2022",
-        month: "2",
-        ccv: "123",
+        cardNum: "",
+        year: "",
+        month: "",
+        ccv: "",
       },
       cards: "",
       months: [
