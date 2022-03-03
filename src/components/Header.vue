@@ -24,6 +24,7 @@
         </router-link>
         <router-link class="routerLinks" to="/SavedProducts">
           <fa icon="fa-solid fa-heart" />
+           <span class="total-liked">{{ likedItemCounter }}</span>
         </router-link>
         <router-link class="routerLinks" to="/Cart">
           <fa icon="fa-solid fa-bag-shopping" />
@@ -46,6 +47,9 @@ export default {
   computed: {
     cartItemCounter() {
       return this.$store.getters.cartItemCounter;
+    },
+    likedItemCounter() {
+      return this.$store.getters.likedItemCounter;
     },
     user() {
       return this.$store.getters.currentUser;
@@ -113,17 +117,37 @@ export default {
   font-size: 18px;
 }
 .total-amount {
+  position: absolute;
   align-items: center;
   background: lightblue;
   border-radius: 50%;
   display: flex;
   font-weight: bold;
-  height: 2rem;
+  height: 15px;
+  width: 15px;
   justify-content: center;
   padding: 0.5rem;
   position: absolute;
   right: 30px;
   top: 20px;
-  width: 2rem;
+  font-size: 15px;
+  transform: translate(-14px, 23px);
+}
+.total-liked {
+  position: absolute;
+  align-items: center;
+  background: #98002e;
+  border-radius: 50%;
+  display: flex;
+  font-weight: bold;
+  height: 12px;
+  width: 12px;
+  justify-content: center;
+  padding: 0.5rem;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-size: 15px;
+  transform: translate(-103px, 26px);
 }
 </style>

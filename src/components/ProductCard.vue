@@ -15,6 +15,8 @@
     <button class="add-to-cart" @click="addToCart(singleItem)">
       <i class="gg-shopping-cart"></i> ADD TO CART
     </button>
+    <fa icon="fa-solid fa-heart" class="heart-ic" @click="addToLiked(singleItem)" />
+    
   </div>
 </template>
 
@@ -31,12 +33,16 @@ export default {
     addToCart(singleItem) {
       this.$store.dispatch("addToCart", singleItem);
     },
+    addToLiked(singleItem){
+      this.$store.dispatch("addToLiked", singleItem);
+    }
   },
 };
 </script>
 
 <style scoped>
 @import url("https://css.gg/shopping-cart.css");
+@import url('https://css.gg/heart.css');
 .product-card {
   padding: 20px;
   display: flex;
@@ -79,4 +85,20 @@ export default {
   border-radius: 100px;
   color: white;
 }
+.heart-ic{
+height: 3rem;
+position:absolute;
+transform: translate(-75px);
+
+}
+.fa-heart path {
+  fill: #98002e;
+}
+.fa-heart:after {
+        content: "";
+        background-color: white;
+        border-radius: 50%;
+        height: 30px;
+        position: absolute;
+        width: 30px;}
 </style>
