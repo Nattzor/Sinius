@@ -103,13 +103,11 @@ export default new Vuex.Store({
     updateCart({ commit }, { id, amount }) {
       commit("updateCartItem", { id, amount });
     },
-    async fakkOff(context, payload) {
+    async fetchProductsByCategory(context, payload) {
       const response = await API.getProductByCategory(
       payload.category
      );
-      console.log(payload.category)
       context.commit("productByCategory", response.data);
-      console.log(response.data)
     },
     async checkout(context, payload) {
       const response = await API.PlacedOrder(

@@ -78,7 +78,7 @@
           required
         />
       </div>
-      <div class="containerCard">
+      <div class="container-card">
         <h2>Pay with</h2>
         <div class="card">
           <input
@@ -258,7 +258,7 @@ cart() {
   methods: {
     sendOrder() {
       this.$store.dispatch("checkout", this.userDetails);
-      this.$router.push("/confirmedOrder");
+      this.$router.push("/ConfirmedOrder");
       this.$store.state.cart = []
     },
   },
@@ -290,7 +290,7 @@ h1 {
   margin-left: 15rem;
 }
 
-.containerCard {
+.container-card {
   width: 500px;
   height: 500px;
   display: grid;

@@ -1,5 +1,5 @@
 <template>
-  <div class="confirmedOrder">
+  <div class="confirmed-order">
     <h1>Tack för din beställning!</h1>
     <br />
     <br />
@@ -34,7 +34,6 @@
 export default {
   computed: {
     order() {
-      console.log(this.$store.getters.getOrderHistory[0]);
       return this.$store.getters.getOrderHistory[0];
     },
   },
@@ -42,11 +41,11 @@ export default {
 </script>
 
 <style scoped>
-.confirmedOrder {
+.confirmed-order {
   display: grid;
   justify-content: center;
 }
-.confirmedOrder ul {
+.confirmed-order ul {
   list-style-type: none;
 }
 </style>

@@ -5,11 +5,11 @@
       v-bind:style="{ 'background-image': 'url(' + backgroundImage + ')' }"
     >
       <h1>
-        Welocme to Swedens biggest online skateboard store! <br />
+        Welcome to Swedens biggest online skateboard store! <br />
         We have everything you want and more
       </h1>
-      <button class="toShopBtn">
-        <router-link class="toShopBtn" to="/Products">
+      <button class="to-shop-btn">
+        <router-link class="to-shop-btn" to="/Products">
           CHECK OUT THE STORE</router-link
         >
       </button>
@@ -38,7 +38,7 @@ export default {
         },
         {
           id: 1,
-          name: "Hernik Larsson",
+          name: "Henrik Larsson",
           quote: "Jag har precis börjat men det är väldigt roligt.",
           article:
             "Jag har inte åkt  så länge så jag är inte så bra jag än. Men jag fick en ny skateboard när jag fyllde år så nu kan jag åka mycke bättre.",
@@ -49,7 +49,7 @@ export default {
           name: "Torsten Borsten",
           quote: "Det är svårt ibland men det är ändå välldigt kul.",
           article:
-            "Jag gillar skateboard. Det är svårt att hålla balancen ibland, men det är roligt ändå. När jag inte är i skolan går jag till skateparken med mina kompisar.",
+            "Jag gillar skateboard. Det är svårt att hålla balansen ibland, men det är roligt ändå. När jag inte är i skolan går jag till skateparken med mina kompisar.",
           img: require("@/assets/skateboard3.jpeg"),
         },
       ],
@@ -74,7 +74,7 @@ export default {
   background-repeat: no-repeat;
 }
 
-.toShopBtn {
+.to-shop-btn {
   border-color: white;
   padding: 1rem;
   margin: 5rem;
