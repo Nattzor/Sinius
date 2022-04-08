@@ -14,6 +14,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   components: { Header, Footer },
+  // $FEEDBACK: Unecessary styling in script since it never changes, move this to style-tag
   data() {
     return {
       backgroundImage: require("@/assets/WhiteAndGrayVectorBackground.jpg"),

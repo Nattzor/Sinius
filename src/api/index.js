@@ -7,6 +7,7 @@ export async function getProductByCategory (category) {
 return  await axios.get(`/items/?category=${category}`)
 }
 
+// $QUESTION: Why three identical functions?
 export function saveToken(token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }

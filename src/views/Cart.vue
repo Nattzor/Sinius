@@ -97,6 +97,7 @@
       <div>
         <div class="cart-item-wrapper">
           <li class="cart-li" v-for="cartItem in cart" :key="cartItem.id">
+            <!-- $TIPS: Move http://localhost:5000 to an environment variable -->
             <img
               class="cart-img"
               :src="'http://localhost:5000//images/' + cartItem.imgFile"
@@ -151,11 +152,13 @@ export default {
   },
   methods: {
     removeFromCart(cartItem) {
+      // $FEEDBACK: Avoid using alert and confirm, it's fine for testing but replace it ASAP with a custom dialog
       if (confirm("Do you really want to delete product from cart?")) {
         this.$store.dispatch("removeFromCart", { id: cartItem.id });
       }
     },
     increase(cartItem) {
+      // $FEEDBACK: This logic is better put in the store, 'increaseCartItem(id)'
       this.$store.dispatch("updateCart", {
         id: cartItem.id,
         amount: cartItem.amount++,

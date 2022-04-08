@@ -55,6 +55,7 @@ export default {
       if (this.clothesDropdown) {
         this.clothesDropdown = false;
         this.activeClothesDropdown = true;
+        // $FEEDBACK: Use style bindings and avoid querySelector
         document.querySelector(".categoryPaddingBottom").style.paddingTop =
           "2.5rem";
       } else if (this.clothesDropdown === false) {

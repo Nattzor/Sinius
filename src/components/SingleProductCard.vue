@@ -52,6 +52,7 @@ export default {
     },
   },
   computed: {
+    // $FEEDBACK: Move this to a getter `getProductById(id)`
     item() {
       return this.$store.state.itemList.find(
         (item) => item.id == this.$route.params.id
