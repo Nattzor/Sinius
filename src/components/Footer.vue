@@ -25,6 +25,7 @@ export default {};
 </script>
 
 <style scoped>
+/* $FEEDBACK: Move font-imports to global styling */
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
 .footer {
   display: grid;

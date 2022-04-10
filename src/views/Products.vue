@@ -1,8 +1,8 @@
 <template>
   <div>
     <Category class="Category" @changeCategory="changeCategory" />
-    <div class="productPlacement">
-      <article class="productGrid">
+    <div class="product-placement">
+      <article class="product-grid">
         <ProductCard
           v-for="(item, index) in items"
           :key="index"
@@ -28,7 +28,7 @@ export default {
     changeCategory(choosenCategory) {
       this.category = choosenCategory;
       if (this.category ==  "hoodie" || this.category =="wheel" || this.category =="cap" || this.category =="tshirt" || this.category == "griptape" || this.category =="skateboard" || this.category =="totebag" || this.category =="socks") {
-          return this.$store.dispatch("fakkOff",  {category: this.category});
+          return this.$store.dispatch("fetchProductsByCategory",  {category: this.category});
     }
   },
   },
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-.productGrid {
+.product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.5rem;
@@ -61,7 +61,7 @@ export default {
   justify-items: center;
   align-items: end;
 }
-.productPlacement {
+.product-placement {
   padding-left: 25rem;
   padding-top: 9.5rem;
 }

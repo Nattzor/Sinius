@@ -42,9 +42,11 @@ export default {
     };
   },
   methods: {
-    authLogin() {
-      this.$store.dispatch("authUser", this.loginDetails);
-      this.$router.push("/userAccount");
+    async authLogin() {
+      // $FEEDBACK: authUser dispatch is asynchronous, the router navigates before the request is finished
+      // causing GET /api/me to be sent too soon without a token.
+      await this.$store.dispatch("authUser", this.loginDetails);
+      this.$router.push("/UserAccount");
       this.$store.dispatch("userAccount");
     },
   },

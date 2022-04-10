@@ -1,30 +1,30 @@
 <template>
-  <div class="SingleProductCard">
-    <Category class="Category" />
+  <div class="Single-product-card">
+    <Category class="category" />
     <div class="positioning">
-      <div class="singleCardInfo">
+      <div class="single-card-info">
         <img
-          class="displayedProduct"
+          class="displayed-product"
           :src="'http://localhost:5000/images/' + item.imgFile"
           alt="Blue Sweater"
         />
-        <h1 class="productName">{{ item.title }} Sinus {{ item.category }}</h1>
-        <div class="tagPriceCart">
-          <div class="tagAndPrice">
-            <fa class="priceTag" icon="fa-solid fa-tag" rotation="90" />
-            <h2 class="productPrice">{{ item.price | toCurrency }}</h2>
+        <h1 class="product-name">{{ item.title }} Sinus {{ item.category }}</h1>
+        <div class="tag-price-cart">
+          <div class="tag-and-price">
+            <fa class="price-tag" icon="fa-solid fa-tag" rotation="90" />
+            <h2 class="product-price">{{ item.price | toCurrency }}</h2>
           </div>
           <button class="add-to-cart" @click="addToCart(item)">
             <i class="gg-shopping-cart"></i> ADD TO CART
           </button>
         </div>
         <div class="cirles">
-          <div class="redCircle"></div>
-          <div class="grayCircle"></div>
-          <div class="darkGreenCircle"></div>
-          <div class="blueCircle"></div>
+          <div class="red-circle"></div>
+          <div class="gray-circle"></div>
+          <div class="dark-green-circle"></div>
+          <div class="blue-circle"></div>
         </div>
-        <p class="chooseSize">
+        <p class="choose-size">
           <select id="size" required>
             <option disabled selected value>Select size</option>
             <option value="S">S</option>
@@ -33,7 +33,7 @@
             <option value="XL">XL</option>
           </select>
         </p>
-        <h3 class="productDescription">{{ item.longDesc }}</h3>
+        <h3 class="product-description">{{ item.longDesc }}</h3>
       </div>
     </div>
   </div>
@@ -52,6 +52,7 @@ export default {
     },
   },
   computed: {
+    // $FEEDBACK: Move this to a getter `getProductById(id)`
     item() {
       return this.$store.state.itemList.find(
         (item) => item.id == this.$route.params.id
@@ -66,11 +67,11 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quando&display=swap");
-.SingleProductCard {
+.Single-product-card {
   display: grid;
   grid-template-columns: auto auto;
 }
-.singleCardInfo {
+.single-card-info {
   width: 46vw;
   height: 55vh;
   display: grid;
@@ -80,24 +81,24 @@ export default {
   grid-row-gap: 20px;
   padding-top: 9.5rem;
 }
-.displayedProduct {
+.displayed-product {
   background-color: rgba(204, 204, 204, 0.5);
   border: 3px solid black;
   grid-area: 1 / 1 / 6 / 2;
   width: 90%;
 }
-.productName {
+.product-name {
   grid-area: 1 / 2 / 2 / 3;
 }
-.tagPriceCart {
+.tag-price-cart {
   display: grid;
   grid-template-columns: auto auto;
 }
-.priceTag {
+.price-tag {
   font-size: 20px;
   justify-self: flex-end;
 }
-.tagAndPrice {
+.tag-and-price {
   display: grid;
   grid-template-columns: auto auto;
 }
@@ -124,31 +125,31 @@ export default {
   grid-area: 3 / 2 / 4 / 3;
   cursor: pointer;
 }
-.redCircle {
+.red-circle {
   background: #ff0000;
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
-.grayCircle {
+.gray-circle {
   background: #7c7d7d;
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
-.darkGreenCircle {
+.dark-green-circle {
   background: #0c4b23;
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
-.blueCircle {
+.blue-circle {
   background: #264d77;
   border-radius: 50%;
   width: 27px;
   height: 27px;
 }
-.chooseSize {
+.choose-size {
   grid-area: 4 / 2 / 5 / 3;
 }
 #size {
@@ -160,14 +161,14 @@ export default {
   height: 60px;
   font-size: 24px;
 }
-.productDescription {
+.product-description {
   font-family: "Work Sans", sans-serif;
   font-style: normal;
   font-size: 16px;
   font-weight: 500;
   grid-area: 5 / 2 / 6 / 3;
 }
-.productHeaders h2 {
+.product-headers h2 {
   font-family: "Work Sans", sans-serif;
   font-style: normal;
   font-size: 24px;

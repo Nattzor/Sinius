@@ -133,6 +133,7 @@ export default {
         this.error.password = true;
         return false;
       }
+      // $FEEDBACK: Avoid merging unused code
       // if (this.userDetails.pswRepeat.length < 1) {
       //   this.error.pswRepeat = true;
       //   return false;
